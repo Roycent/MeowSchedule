@@ -1,0 +1,16 @@
+<loading hidden="{{loading}}">
+  加载中...
+</loading>
+<scroll-view class="list_box" lower-threshold="800" bindscrolltolower="pullUpLoad" upper-threshold="0" scroll-y="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px; ">
+  <view class="list" wx:for-items="{{newList}}" wx:key="newListId" bindtap="toSeeDetail" data-id="{{item.id}}" data-fid="{{item.fid}}">
+    <view class="list_left" data-id="{{item.id}}" data-fid="{{item.fid}}">
+      <image mode="aspectFill" src="{{item.avatar}}" wx:if="{{item.avatar!=''&&item.behavior!=7&&item.behavior!=6&&item.behavior!=5}}" data-id="{{item.id}}" data-fid="{{item.fid}}"></image>
+      <image mode="aspectFill" src="http://bmob-cdn-7744.b0.upaiyun.com/2016/12/27/17a316c140631cf780b1425c31a72431.png" wx:else data-id="{{item.id}}" data-fid="{{item.fid}}"></image>
+    </view>
+    <view class="list_right" data-id="{{item.id}}" data-fid="{{item.fid}}">
+      <view class="time" data-id="{{item.id}}" data-fid="{{item.fid}}">
+        {{item.created_at}}
+      </view>
+    </view>
+  </view>
+</scroll-view>

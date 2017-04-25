@@ -1,0 +1,7 @@
+<view class="topBox">
+  <text>此处应该有logo</text>
+  <text>v1.0.0</text>
+</view>
+<view class="bottomBox">
+  <view>此处不知道写什么</view>
+</view>
