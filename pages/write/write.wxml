@@ -1,0 +1,22 @@
+<loading hidden="{{loading}}">
+  页面初始化中...
+</loading>
+    <view class="add_pic" bindtap="uploadPic" wx-if="{{!isSrc}}">
+        <view>添加图片</view>
+    </view>
+    <view wx:if="{{isSrc}}" class="image_box">
+        <view  class="picPre">
+            <image src="{{src}}"  mode="aspectFill"></image>
+            <view bindtap="clearPic"></view>
+        </view>
+    </view>
+    
+    <input placeholder="输入标题"  class="add_title" value="" bindinput="setTitle"/>
+<text>↓此处应该有一个定位的logo 当前位置</text>
+<input placeholder="位置：{{address}}" class="add_title" value=""/> 
+<button bindtap="getAddr">获取当前位置</button>
+
+    <view  class="addConent">
+        <textarea  placeholder="添加内容" maxlength="1000"  value="" bindblur="setContent"/>
+    </view>
+    <button bindtap="sendNewMood" data-content="{{content}}" loading="{{isLoading}}" data-title="{{title}}" hover-start-time="200" disabled="{{isdisabled}}">增加日程</button>

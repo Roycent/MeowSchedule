@@ -1,0 +1,20 @@
+<import src="../template/list.wxml" />
+<loading hidden="{{loading}}">
+  页面加载中...
+</loading>
+<view>
+  <view class="content_detail">
+    <view class="operation_box" wx:if="{{isMine}}">
+      <view class="operation">
+        <view bindtap="deleteThis">
+        </view>
+        <view class="mail public_{{isPublic}}" bindtap="publicThis">
+        </view>
+      </view>
+    </view>
+    <template is="listTemp" data="{{listPic:listPic,listTitle:listTitle,listContent:listContent}}" />
+    <view class="detail_footer">
+      <view class="content_header_right">{{publishTime}}</view>
+    </view>
+  </view>
+</view>
