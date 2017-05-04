@@ -1,0 +1,8 @@
+<!--pages/listDetail/listDetail.wxml-->
+<text>pages/listDetail/listDetail.wxml</text>
+<import src="../template/list.wxml" />
+<loading hidden="{{loading}}">
+  页面加载中...
+</loading>
+<view bindtap="deleteThis">删除删除</view>
+<template is="listTemp" data="{{listPic:listPic,listTitle:listTitle,listContent:listContent}}" />
