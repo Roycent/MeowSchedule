@@ -16,6 +16,7 @@ Page({
       isdisabled1:false,
       listContent:"",
       listTitle:"",
+      listAddress:"",
       listPic:""
   },
   
@@ -46,7 +47,7 @@ Page({
                       var title=result[0].get("title");
                       var content=result[0].get("content");
                       var participant=result[0].get("participant");
-                      var address=participant.get("address");
+                      var address=result[0].get("address");
                       var userPic;
                       var url;
                       if(result[0].get("pic")){
@@ -60,6 +61,7 @@ Page({
                         listTitle:title,
                         listContent:content,
                         listPic:url,
+                        listAddress:address,
                         loading: true,
                       })
                     },
@@ -82,7 +84,7 @@ Page({
       return {
         title:that.data.listTitle,
         desc: that.data.listContent,
-        path: '/pages/listDetail/listDetail?moodId='+optionId,
+        path: '/pages/listDetail/listDetail?itemId='+optionId,
       }
     
   },

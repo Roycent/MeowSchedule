@@ -34,7 +34,7 @@
 </picker>
 
 <view>日期选择器</view>
-<picker mode="date" value="{{date}}" start="1995-01-01" end="2055-12-31" bindchange="listenerDatePickerSelected">
+<picker mode="date" value="{{date}}" start="1995-01-01" end="2055-12-31" bindchange="setDate">
     <text>{{date}}</text>
 </picker>
-    <button bindtap="sendNewItem" data-content="{{content}}" loading="{{isLoading}}" data-title="{{title}}" data-address="{{address}}" hover-start-time="200" disabled="{{isdisabled}}">增加日程</button>
+    <button bindtap="sendNewItem" data-content="{{content}}" loading="{{isLoading}}" data-title="{{title}}" data-address="{{address}}" data-date="{{date}}" data-Iindex="{{Iindex}}" data-Vindex="{{Vindex}}" data-time="{{time}}" hover-start-time="200" disabled="{{isdisabled}}">增加日程</button>

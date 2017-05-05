@@ -113,22 +113,22 @@ Page({
   //set各种内容的分割线
   //监听选取控件更改
   listenerTimePickerSelected: function(e){
-    this.setData({
+    that.setData({
       time: e.detail.value
     })
   },
-  listenerDatePickerSelected: function(e){
-    this.setData({
+  setDate: function(e){
+    that.setData({
       date: e.detail.value
     })
   },
   listenerImportancePickerSelected: function(e){
-    this.setData({
+    that.setData({
       Iindex: e.detail.value
     })
   },
-  listenerVarietyPickerSelecetd: function(e){
-    this.setData({
+  listenerVarietyPickerSelected: function(e){
+    that.setData({
       Vindex: e.detail.value
     })
   },
@@ -137,6 +137,10 @@ Page({
     var content = e.target.dataset.content;
     var title = e.target.dataset.title;
     var address = e.target.dataset.address;
+    var date = e.target.dataset.date;
+    var time = e.target.dataset.time;
+    var Iindex = e.target.dataset.iindex;
+    var Vindex = e.target.dataset.vindex;
     //判断内容是否为空，BUG:点两次才好使= =
     if(content==""){
       common.dataLoading("内容不能为空","loading");
@@ -153,15 +157,14 @@ Page({
           var schedule = new Schedule();
           var me = new Bmob.User();
           me.id = res.data;
-          schedule.set("participant",me)
+          schedule.set("participant",me);
           schedule.set("title",title);
           schedule.set("content",content);
           schedule.set("address",address);
-          schedule.set("date",date);
+          schedule.set("plannedDate",date);
           schedule.set("time",time);
           schedule.set("importance",Iindex);
           schedule.set("variety",Vindex);
-         // us.set("participant",me);
           if(that.data.isSrc==true){
             var name = that.data.src;
             var file = new Bmob.File(name,that.data.src);

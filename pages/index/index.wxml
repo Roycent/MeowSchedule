@@ -3,8 +3,8 @@
 <import src="../template/list.wxml" />
 <scroll-view lower-threshold="800" bindscrolltolower="pullUpLoad" upper-threshold="0" scroll-y="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px; ">
 <!--<view class="index_list">-->
-  <navigator url="../listDetail/listDetail?moodId={{item.id}}" hover-class="navigator-hover" wx:for-items="{{moodList}}" wx:key="moodListId">
-    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content}}" />
+  <navigator url="../listDetail/listDetail?itemId={{item.id}}" hover-class="navigator-hover" wx:for-items="{{itemList}}" wx:key="itemListId">
+    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address}}" />
   </navigator>
 </scroll-view>
 

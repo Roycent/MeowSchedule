@@ -5,4 +5,4 @@
   页面加载中...
 </loading>
 <view bindtap="deleteThis">删除删除</view>
-<template is="listTemp" data="{{listPic:listPic,listTitle:listTitle,listContent:listContent}}" />
+<template is="listTemp" data="{{listPic:listPic,listTitle:listTitle,listContent:listContent,listAddress:listAddress}}" />

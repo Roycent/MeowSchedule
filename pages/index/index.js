@@ -4,10 +4,10 @@ var app = getApp()
 var common = require('../template/getCode.js')
 var Bmob=require("../../utils/bmob.js");
 var that;
-var molist= new Array();
+var itlist= new Array();
 Page({
   data: {
-    moodList: [],
+    itemList: [],
     limit: 6,
     loading: false,
     windowHeight: 0,
@@ -58,18 +58,19 @@ Page({
                             var id=results[i].id;
                             var created_at=results[i].createdAt;
                             var _url;
-                            var ishide=results[i].get("is_hide");
                             var pic=results[i].get("pic");
+                            var address=results[i].get("address");
+                            console.log(address);
                             if(pic){
-                                jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","attachment":"'+pic._url+'"}'
+                                jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","attachment":"'+pic._url+'","address":"'+address+'"}'
                             }
                             else{
-                              jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'}'
+                              jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","address":"'+address+'"}'
                             }
                             var jsonB=JSON.parse(jsonA);
-                            molist.push(jsonB)
+                            itlist.push(jsonB)
                             that.setData({
-                              moodList:molist,
+                              itemList:itlist,
                               loading: true
                             })
                             
