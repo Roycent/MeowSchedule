@@ -7,7 +7,6 @@ var that;
 Page({
   onLoad:function(options){
     that = this;
-    
     that.setData({
       src:"",
       isSrc:false,
@@ -18,8 +17,16 @@ Page({
       loading:false,
       isDisabled:false,
       sugData:'',
+      time:"10:03",
+      date:"2017-5-5",
+      importanceArray:['lowest','below normal','normal','above normal','highest'],
+      Iindex:2,
+      testText:"学习",
+      varietyArray:['学习','工作','娱乐','健身','其它'],
+      Vindex:1,
       markers:[]
-    });//end of onLoad.that.setData
+    });
+    console.log("xixi");//end of onLoad.that.setData
   },//end of onLoad
   onReady:function(){
     wx.hideToast();
@@ -104,6 +111,27 @@ Page({
     })
   },
   //set各种内容的分割线
+  //监听选取控件更改
+  listenerTimePickerSelected: function(e){
+    this.setData({
+      time: e.detail.value
+    })
+  },
+  listenerDatePickerSelected: function(e){
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  listenerImportancePickerSelected: function(e){
+    this.setData({
+      Iindex: e.detail.value
+    })
+  },
+  listenerVarietyPickerSelecetd: function(e){
+    this.setData({
+      Vindex: e.detail.value
+    })
+  },
   //保存新的日程
   sendNewItem: function(e){
     var content = e.target.dataset.content;
@@ -129,6 +157,11 @@ Page({
           schedule.set("title",title);
           schedule.set("content",content);
           schedule.set("address",address);
+          schedule.set("date",date);
+          schedule.set("time",time);
+          schedule.set("importance",Iindex);
+          schedule.set("variety",Vindex);
+         // us.set("participant",me);
           if(that.data.isSrc==true){
             var name = that.data.src;
             var file = new Bmob.File(name,that.data.src);
@@ -137,10 +170,20 @@ Page({
           }
           schedule.save(null,{
             success: function(result){
+              console.log("resultID:"+result.id);
+              var UserSchedule = Bmob.Object.extend("UserSchedule");
+              var us = new UserSchedule;
+              us.set("participant",me);
+              us.set("itemID",result.id);
+              us.save(null,{
+                success: function(res){
+                  console.log(res.id);
+                }
+              })
               that.setData({
                 isLoading:false,
                 loading:false
-              })
+              });
 
               common.dataLoading("添加日程成功","success",function(){
                 wx.navigateBack({

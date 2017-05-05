@@ -19,4 +19,22 @@
     <view>
         <textarea  placeholder="添加内容" maxlength="1000"  value="" bindblur="setContent"/>
     </view>
+    <view>时间选择器</view>
+<picker mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="listenerTimePickerSelected">
+    <text>{{time}}</text>
+</picker>
+<view>重要程度选择器</view>
+<picker mode="selector" range="{{importanceArray}}" value="{{Iindex}}" bindchange="listenerImportancePickerSelected">
+    <text>{{importanceArray[Iindex]}}</text>
+</picker>
+
+<view>分类选择器</view>
+<picker mode="selector" range="{{varietyArray}}" value="{{Vindex}}" bindchange="listenerVarietyPickerSelected">
+    <text>{{varietyArray[Vindex]}}</text>
+</picker>
+
+<view>日期选择器</view>
+<picker mode="date" value="{{date}}" start="1995-01-01" end="2055-12-31" bindchange="listenerDatePickerSelected">
+    <text>{{date}}</text>
+</picker>
     <button bindtap="sendNewItem" data-content="{{content}}" loading="{{isLoading}}" data-title="{{title}}" data-address="{{address}}" hover-start-time="200" disabled="{{isdisabled}}">增加日程</button>
