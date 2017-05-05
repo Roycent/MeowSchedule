@@ -17,13 +17,17 @@ Page({
       listContent:"",
       listTitle:"",
       listAddress:"",
-      listPic:""
+      listPic:"",
+      listTime:"",
+      listDate:"",
+      listVariety:"",
+      listImportance:"",
   },
   
   onLoad: function(options) {   
       that=this;
-      optionId=options.moodId;
-      console.log(options.moodId);
+      optionId=options.itemId;
+      console.log(options.itemId);
       
   },
   onReady:function(){
@@ -48,6 +52,10 @@ Page({
                       var content=result[0].get("content");
                       var participant=result[0].get("participant");
                       var address=result[0].get("address");
+                      var importance=result[0].get("importance");
+                      var variety=result[0].get("variety");
+                      var time=result[0].get("time");
+                      var date=result[0].get("date");
                       var userPic;
                       var url;
                       if(result[0].get("pic")){
@@ -56,12 +64,15 @@ Page({
                       else{
                         url=null;
                       }
-                      console.log("xixi");
                       that.setData({
                         listTitle:title,
                         listContent:content,
                         listPic:url,
                         listAddress:address,
+                        listVariety:variety,
+                        listImportance:importance,
+                        listTime:time,
+                        listdate:date,
                         loading: true,
                       })
                     },
@@ -132,9 +143,9 @@ Page({
       }
     })
   },
-bindKeyInput:function(e){
+changeTitle:function(e){
   this.setData({
-    publishContent: e.detail.value
+    listTitle: e.detail.value
   })
 },
   onHide: function() {
