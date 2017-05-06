@@ -17,7 +17,8 @@ Page({
     that = this;
     that.setData({
       loading: false
-    })
+    });
+    
   },
   onReady: function () {
 
@@ -72,9 +73,7 @@ Page({
                             that.setData({
                               itemList:itlist,
                               loading: true
-                            })
-                            
-                                            
+                            })                                       
                           }
                         },
                         error: function(error) {
@@ -97,8 +96,13 @@ Page({
         })
       }
     })
+
   },
   onHide: function () {
+    console.log(itlist);
+    itlist=[];
+    console.log("hide");
+    console.log(itlist);
   },
   onUnload: function (event) {
 
@@ -107,22 +111,12 @@ Page({
     var limit = this.data.limit + 2
     that.setData({
       limit: limit
-    })
-    this.onShow()
+    });
+    that.onLoad();
   },
-  onPullDownRefresh: function () {
-    wx.navigateTo({
-      url: '../index/index',
-      success: function(res){
-        // success
-      },
-      fail: function(res) {
-        // fail
-      },
-      complete: function(res) {
-        // complete
-      }
-    })
+  pullDownRefresh: function () {
+    console.log("refresh");
+    that.onLoad();
   }
 
 })
