@@ -99,10 +99,7 @@ Page({
 
   },
   onHide: function () {
-    console.log(itlist);
     itlist=[];
-    console.log("hide");
-    console.log(itlist);
   },
   onUnload: function (event) {
 

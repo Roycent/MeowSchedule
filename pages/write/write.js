@@ -157,14 +157,16 @@ Page({
           var schedule = new Schedule();
           var me = new Bmob.User();
           me.id = res.data;
+          var VVindex = parseInt(Vindex);
+          var IIindex = parseInt(Iindex);
           schedule.set("participant",me);
           schedule.set("title",title);
           schedule.set("content",content);
           schedule.set("address",address);
           schedule.set("plannedDate",date);
           schedule.set("time",time);
-          schedule.set("importance",Iindex);
-          schedule.set("variety",Vindex);
+          schedule.set("importance",IIindex);
+          schedule.set("variety",VVindex);
           if(that.data.isSrc==true){
             var name = that.data.src;
             var file = new Bmob.File(name,that.data.src);
@@ -208,7 +210,7 @@ Page({
             error:function(result,error){
               console.log(error);
               common.dataLoading("添加日程失败","loading");
-              setData({
+              that.setData({
                 isLoading:false,
                 loading:false
               })
