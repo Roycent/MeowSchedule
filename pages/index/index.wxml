@@ -1,5 +1,7 @@
 <!--index.wxml-->
 <navigator url="../write/write">toWrite</navigator>
+<input placeholder="输入搜索内容" bindinput="setSearchKeyword"/>
+<navigator url="../search/search?searchKeyword={{searchKeyword}}">toSearch</navigator>
 <import src="../template/list.wxml" />
 <scroll-view lower-threshold="800" bindscrolltolower="pullUpLoad" bindscrolltoupper="pullDownRefresh" scroll-y="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px; ">
 <!--<view class="index_list">-->

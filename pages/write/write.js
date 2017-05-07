@@ -167,6 +167,7 @@ Page({
           schedule.set("time",time);
           schedule.set("importance",IIindex);
           schedule.set("variety",VVindex);
+          console.log(res.data);
           if(that.data.isSrc==true){
             var name = that.data.src;
             var file = new Bmob.File(name,that.data.src);

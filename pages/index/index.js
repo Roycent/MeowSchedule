@@ -11,7 +11,8 @@ Page({
     limit: 6,
     loading: false,
     windowHeight: 0,
-    windowWidth: 0
+    windowWidth: 0,
+    searchKeyword: ''
   },
   onLoad: function (options) {
     that = this;
@@ -98,7 +99,7 @@ Page({
     })
 
   },
-  onHide: function () {
+  onHide: function (){
     itlist=[];
   },
   onUnload: function (event) {
@@ -114,6 +115,11 @@ Page({
   pullDownRefresh: function () {
     console.log("refresh");
     that.onLoad();
+  },
+  setSearchKeyword: function(e){
+    that.setData({
+      searchKeyword:e.detail.value
+    })
   }
 
 })
