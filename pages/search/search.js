@@ -19,7 +19,8 @@ Page({
       loading: true,
       searchKeyword:options.searchKeyword
     });
-    console.log(that.data.searchKeyword)
+    console.log(that.data.searchKeyword);
+    console.log(itlist);
     var myInterval = setInterval(function (){
       wx.getStorage({
         key: 'user_id',
@@ -28,26 +29,18 @@ Page({
           if(res.data){
             clearInterval(myInterval);
             var Schedule = Bomb.Object.extend("Schedule");
-            var query1 = new Bomb.Query(Schedule);
-            var query2 = new Bomb.Query(Schedule);
+            var query = new Bomb.Query(Schedule);
             var isme = new Bomb.User();
             isme.id = res.data;
-            query1.equalTo("participant", isme);
-            query2.equalTo("participant", isme);
+            query.equalTo("participant", isme);
             if(that.data.limit==6){
-              query1.limit(that.data.limit);
-              query2.limit(that.data.limit);
+              query.limit(that.data.limit);
             }
             if(that.data.limit>6){
-              query1.limit(2);
-              query2.limit(2);
-              query1.skip(that.data.limit-2);
-              query2.skip(that.data.limit-2);
+              query.limit(2);
+              query.skip(that.data.limit-2);
             }
-            query1.equalTo("title",that.data.searchKeyword);
-            query2.equalTo("content",that.data.searchKeyword);
-            var mainQuery = Bomb.Query.or(query1,query2);
-            mainQuery.find({
+            query.find({
               success: function(results){
                 that.setData({
                   loading:true
@@ -61,8 +54,9 @@ Page({
                   var _url;
                   var pic=results[i].get("pic");
                   var address=results[i].get("address");
-                  console.log(address);
-                  var searchString = "*" + that.data.searchKeyword + "*";
+                  var searching = that.data.searchKeyword;
+                  if(title.search(searching)!=-1 || content.search(searching)!=-1)
+                  {
                   if(pic){
                     jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","attachment":"'+pic._url+'","address":"'+address+'"}'
                     }
@@ -76,8 +70,8 @@ Page({
                     loading: true
                     })        
                 }
-                
-              },//end of mainQuery.find.success
+                }
+              },//end of query.find.success
               error: function(error){
                 common.dataLoading(error,"loading");
                 that.setData({
@@ -112,10 +106,11 @@ Page({
     // 页面显示
   },
   onHide:function(){
-    itlist:[]
+    itlist=[];
     // 页面隐藏
   },
   onUnload:function(){
+    itlist=[];
     // 页面关闭
   },
   pullUpLoad: function (e) {
