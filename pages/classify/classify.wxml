@@ -1,0 +1,6 @@
+
+<view class="classname">{{studySum/sum*100}}%</view>
+<view class="classname">{{workSum/sum*100}}%</view>
+<view class="classname">{{entertainmentSum/sum*100}}%</view>
+<view class="classname">{{exerciseSum/sum*100}}%</view>
+<view class="classname">{{otherSum/sum*100}}%</view>
