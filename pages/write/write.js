@@ -18,7 +18,7 @@ Page({
       isDisabled:false,
       sugData:'',
       time:"10:03",
-      date:"2017-5-5",
+      date:"2017-05-05",
       importanceArray:['lowest','below normal','normal','above normal','highest'],
       Iindex:2,
       testText:"学习",
