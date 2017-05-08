@@ -4,9 +4,24 @@
   页面加载中...
 </loading>
 <view hidden="{{!loading}}">
-<view ><text>variety1:{{varietyArray[0]}}</text></view>
-<view><text>variety2:{{varietyArray[1]}}</text></view>
-<view><text>variety3:{{varietyArray[2]}}</text></view>
-<view><text>variety4:{{varietyArray[3]}}</text></view>
-<view><text>variety5:{{varietyArray[4]}}</text></view>
+<view ><text>学习:{{varietyArray[0]}}</text></view>
+<view><text>工作:{{varietyArray[1]}}</text></view>
+<view><text>娱乐:{{varietyArray[2]}}</text></view>
+<view><text>健身:{{varietyArray[3]}}</text></view>
+<view><text>其他:{{varietyArray[4]}}</text></view>
+
+
+<view>开始日期选择器</view>
+<picker mode="date" value="{{startDate}}" start="1995-01-01" end="2055-12-31" bindchange="setStartDate">{{startDate}}</picker>
+
+<view>结束日期选择器</view>
+<picker mode="date" value="{{endDate}}" start="1995-01-01" end="2055-12-31" bindchange="setEndDate">{{endDate}}</picker>
+
+<button bindtap="searchDate">查询</button>
+
 </view>
+
+<import src="../template/list.wxml" />
+ <navigator url="../listDetail/listDetail?itemId={{item.id}}" hover-class="navigator-hover" wx:for-items="{{itemList}}" wx:key="itemListId" >
+    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address}}" />
+  </navigator>
