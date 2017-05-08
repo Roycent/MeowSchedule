@@ -178,8 +178,14 @@ changeTitle:function(e){
               var query = new Bmob.Query(Schedule);
               query.get(optionId,{
                 success: function(res){
-                  res.set('finished',true);
-                  res.save();
+                  if(res.get('finished')==false){
+                    res.set('finished',true);
+                    res.save();
+                  }else{
+                    res.set('finished',false);
+                    res.save();
+                  }
+
                   console.log("success");
                   console.log(optionId);
                 },
