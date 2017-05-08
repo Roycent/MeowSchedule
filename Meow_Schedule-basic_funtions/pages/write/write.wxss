@@ -1,0 +1,46 @@
+/* pages/write/write.wxss */
+
+.TitleStyle/*输入标题样式*/
+{
+    height: 50px;
+    font-size: 20pt;
+    border-bottom: 0.5px solid silver;
+    font-weight: 500;
+}
+.TitleFont/*输入标题文字样式*/
+{
+    color: #b2b2b2;
+    font-weight: 500;
+}
+.AddButton/*添加日程按钮样式*/
+{
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color:black;
+    color: white;
+    margin-top: 10px;
+}
+
+.Out/*最外层边框*/
+{
+    border:2px solid crimson;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.AddPicture/*添加照片按钮样式*/
+{
+  height: 70px;
+  width: 70px;
+  border-radius: 15px;
+}
+.ButtonClick
+{
+    background-color: #b2b2b2;
+}
+.Location
+{
+  width: 20px;
+  height: 20px;
+  float: left;
+}

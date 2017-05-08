@@ -1,0 +1,24 @@
+<!--pages/listDetail/listDetail.wxml-->
+<text>pages/listDetail/listDetail.wxml</text>
+<import src="../template/list.wxml" />
+<loading hidden="{{loading}}">
+  页面加载中.
+</loading>
+<view bindtap="deleteThis">删除删除</view>
+<view><text>图片</text></view>
+<view>
+    <image  mode="aspectFill" src="{{listPic}}" class="listPic" wx:if="{{listPic}}"></image>
+</view>
+<view>标题</view>
+<input placeholder="{{listTitle}}" bindinput="changeTitle"/>
+<view><text>{{listTitle}}</text></view>
+<view>内容</view>
+<view><text>{{listContent}}</text></view>
+<view>地址</view>
+<view><text>{{listAddress}}</text></view>
+<view>重要程度</view>
+<view><text>{{listImportance}}(可以用wx-if根据数字改成具体的)</text></view>
+<view>日程时间</view>
+<view><text>{{listDate}}  {{listTime}}</text></view>
+<view>日程分类</view>
+<view><text>{{listVariety}}(同上上上)</text></view>

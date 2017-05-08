@@ -1,0 +1,9 @@
+//公用模版
+
+<template name="listTemp">
+    <image  mode="aspectFill" src="{{listPic}}" class="listPic" wx:if="{{listPic}}" bindtap="seeBig"></image>
+    
+    <view wx-if="{{listTitle!=''}}">标题：{{listTitle}}</view>
+    <view><text>内容：{{listContent}}</text></view>
+    <view><text>地址：{{listAddress}}</text></view>
+</template>
