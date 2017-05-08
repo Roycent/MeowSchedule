@@ -12,7 +12,9 @@ Page({
     loading: false,
     windowHeight: 0,
     windowWidth: 0,
-    searchKeyword: ''
+    searchKeyword: '',
+    countIt:0,
+    countFIt:0
   },
   onLoad: function (options) {
     that = this;
@@ -38,6 +40,23 @@ Page({
                       var isme = new Bmob.User();
                       isme.id=ress.data;
                       query.equalTo("participant", isme);
+                      query.count({
+                        success: function(count){
+                          that.setData({
+                            countIt: count
+                          })
+                        }
+                      });
+                      var queryFinish = new Bmob.Query(Schedule);
+                      queryFinish.equalTo("participant",isme);
+                      queryFinish.equalTo("finished",true);
+                      queryFinish.count({
+                        success: function(count){
+                          that.setData({
+                            countFIt:count
+                          })
+                        }
+                      });
                       if(that.data.limit==6){
                         query.limit(that.data.limit); 
                       }

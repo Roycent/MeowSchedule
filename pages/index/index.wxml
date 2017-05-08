@@ -1,4 +1,10 @@
 <!--index.wxml-->
+<view >
+  <text>你一共有{{countIt}}个日程</text>
+</view>
+<view >
+  <text>你一共完成了{{countFIt}}个日程</text>
+</view>
 <navigator url="../write/write">toWrite</navigator>
 <navigator url="../seeMore/seeMore">toSeeMore</navigator>
 <input placeholder="输入搜索内容" bindinput="setSearchKeyword"/>
@@ -6,8 +12,10 @@
 <import src="../template/list.wxml" />
 <scroll-view lower-threshold="800" bindscrolltolower="pullUpLoad" bindscrolltoupper="pullDownRefresh" scroll-y="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px; ">
 <!--<view class="index_list">-->
-  <navigator url="../listDetail/listDetail?itemId={{item.id}}" hover-class="navigator-hover" wx:for-items="{{itemList}}" wx:key="itemListId">
-    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address}}" />
+  <navigator url="../listDetail/listDetail?itemId={{item.id}}" hover-class="navigator-hover" wx:for-items="{{itemList}}" wx:key="itemListId" >
+    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address}}" />    
+    <view class="remove" data-id="{{cardTeam.id}}" bindtap="delItem"><view>删除</view></view>  
   </navigator>
 </scroll-view>
+
 

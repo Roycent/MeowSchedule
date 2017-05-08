@@ -19,3 +19,15 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.item .remove{  
+    width: 60px;  
+    height: 100%;  
+    background-color: red;  
+    position: absolute;  
+    top: 0;  
+    right: -60px;  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+}  
