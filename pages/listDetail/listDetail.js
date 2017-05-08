@@ -22,6 +22,7 @@ Page({
       listDate:"",
       listVariety:"",
       listImportance:"",
+      finished:false
   },
   
   onLoad: function(options) {   
@@ -56,6 +57,9 @@ Page({
                       var variety=result[0].get("variety");
                       var time=result[0].get("time");
                       var date=result[0].get("date");
+                      var finish=result[0].get("finished");
+                      console.log("fi:");
+                      console.log(finish);
                       var userPic;
                       var url;
                       if(result[0].get("pic")){
@@ -74,6 +78,7 @@ Page({
                         listTime:time,
                         listdate:date,
                         loading: true,
+                        finished:finish
                       })
                     },
                     error: function(error) {
@@ -84,6 +89,7 @@ Page({
                         console.log(error)
                     }
                   }); 
+                  
                 }
                 
             } 
@@ -162,5 +168,33 @@ changeTitle:function(e){
       current: that.data.listPic, // 当前显示图片的http链接
       urls: [ that.data.listPic] // 需要预览的图片http链接列表
     })
+  },
+  finishedIt: function(e){
+          wx.getStorage({
+            key: 'user_id',
+            success: function(res){
+              // success
+              var Schedule = Bmob.Object.extend("Schedule");
+              var query = new Bmob.Query(Schedule);
+              query.get(optionId,{
+                success: function(res){
+                  res.set('finished',true);
+                  res.save();
+                  console.log("success");
+                  console.log(optionId);
+                },
+                error: function(object,error){
+                  console.log(error);
+                }
+              });
+              
+            },
+            fail: function(res) {
+              // fail
+            },
+            complete: function(res) {
+              // complete
+            }
+          })
   }
 })

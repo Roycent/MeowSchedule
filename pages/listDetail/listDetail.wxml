@@ -11,6 +11,7 @@
 </view>
 <view>标题</view>
 <input placeholder="{{listTitle}}" bindinput="changeTitle"/>
+<view >完成<switch type="checkbox" checked="{{finished}}" bindchange="finishedIt" /></view>
 <view><text>{{listTitle}}</text></view>
 <view>内容</view>
 <view><text>{{listContent}}</text></view>

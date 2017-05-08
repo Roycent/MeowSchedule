@@ -167,6 +167,7 @@ Page({
           schedule.set("time",time);
           schedule.set("importance",IIindex);
           schedule.set("variety",VVindex);
+          schedule.set("finished",false);
           console.log(res.data);
           if(that.data.isSrc==true){
             var name = that.data.src;
