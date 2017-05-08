@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <navigator url="../write/write">toWrite</navigator>
+<navigator url="../seeMore/seeMore">toSeeMore</navigator>
 <input placeholder="输入搜索内容" bindinput="setSearchKeyword"/>
 <navigator url="../search/search?searchKeyword={{searchKeyword}}">toSearch</navigator>
 <import src="../template/list.wxml" />

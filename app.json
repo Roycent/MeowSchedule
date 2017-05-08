@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/write/write",
     "pages/listDetail/listDetail",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/seeMore/seeMore"
   ],
   "window":{
     "backgroundTextStyle":"light",

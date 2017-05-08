@@ -1,0 +1,12 @@
+<!--pages/seeMore/seeMore.wxml-->
+<text>pages/seeMore/seeMore.wxml</text>
+<loading hidden="{{loading}}">
+  页面加载中...
+</loading>
+<view hidden="{{!loading}}">
+<view ><text>variety1:{{varietyArray[0]}}</text></view>
+<view><text>variety2:{{varietyArray[1]}}</text></view>
+<view><text>variety3:{{varietyArray[2]}}</text></view>
+<view><text>variety4:{{varietyArray[3]}}</text></view>
+<view><text>variety5:{{varietyArray[4]}}</text></view>
+</view>
