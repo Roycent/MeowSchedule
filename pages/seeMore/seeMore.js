@@ -2,8 +2,11 @@
 var that;
 var common = require('../template/getCode.js');
 var Bmob=require("../../utils/bmob.js");
+var wxCharts = require('../../utils/wxcharts.js');
 var vArray = [0,0,0,0,0];
 var itlist = new Array();
+var pieChart = null;
+
 Page({
   data:{
     varietyArray:[0,0,0,0,0],
@@ -19,7 +22,16 @@ Page({
     that = this;
     that.setData({
       loading:false
-    })
+    });
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          windowHeight:res.windowHeight,
+          windowWidth:res.windowWidth
+        })
+      },
+    });
+    
   },
   onReady:function(){
     // 页面渲染完成
@@ -51,7 +63,32 @@ Page({
                 }
                 that.setData({
                   varietyArray:vArray
-                })
+                });
+                pieChart = new wxCharts({
+                  animation: true,
+                  canvasId: 'pieCanvas',
+                  type: 'pie',
+                  series: [{
+                    name: '学习',
+                    data: vArray[0],
+                  }, {
+                    name: '工作',
+                    data: vArray[1],
+                  }, {
+                    name: '娱乐',
+                    data: vArray[2],
+                  }, {
+                    name: '健身',
+                    data: vArray[3],
+                  }, {
+                    name: '其它',
+                    data: vArray[4],
+                  }
+                  ],
+                  dataLabel: true,
+                  width: that.data.windowWidth - 50,
+                  height: 300
+                });
               },
               error: function(error){
                 common.loading(error,"loading");
@@ -78,7 +115,9 @@ Page({
           windowWidth:res.windowWidth
         })
       }
-    })
+    });
+    
+    console.log(vArray[1]);
   },
   onHide:function(){
       vArray=[0,0,0,0,0];
@@ -168,5 +207,9 @@ Page({
       })
     }, 500);
     
-  }
+  },
+  touchHandler: function (e) {
+    console.log(pieChart.getCurrentDataIndex(e));
+  },        
+
 })

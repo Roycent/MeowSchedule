@@ -4,12 +4,16 @@
   页面加载中...
 </loading>
 <view hidden="{{!loading}}">
-<view ><text>学习:{{varietyArray[0]}}</text></view>
+
+<view class="container">
+    <canvas canvas-id="pieCanvas" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+</view>
+
+<view><text>学习:{{varietyArray[0]}}</text></view>
 <view><text>工作:{{varietyArray[1]}}</text></view>
 <view><text>娱乐:{{varietyArray[2]}}</text></view>
 <view><text>健身:{{varietyArray[3]}}</text></view>
 <view><text>其他:{{varietyArray[4]}}</text></view>
-
 
 <view>开始日期选择器</view>
 <picker mode="date" value="{{startDate}}" start="1995-01-01" end="2055-12-31" bindchange="setStartDate">{{startDate}}</picker>
