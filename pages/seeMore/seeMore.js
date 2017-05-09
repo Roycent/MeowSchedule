@@ -5,12 +5,15 @@ var Bmob=require("../../utils/bmob.js");
 var wxCharts = require('../../utils/wxcharts.js');
 var vArray = [0,0,0,0,0];
 var itlist = new Array();
+var variety = ['学习','工作','娱乐','健身','其它']
+var vData = new Array();
 var pieChart = null;
 
 Page({
   data:{
     varietyArray:[0,0,0,0,0],
     loading:false,
+    hasItems:false,
     windowHeight:0,
     windowWidth:0,
     startDate:"2017-01-01",
@@ -31,6 +34,28 @@ Page({
         })
       },
     });
+    wx.getStorage({
+      key: 'user_id',
+      success: function(res) {
+        if(res.data){
+          var Schedule = Bmob.Object.extend("Schedule");
+          var query = new Bmob.Query(Schedule);
+          var isme = new Bmob.User();
+          isme.id = res.data;
+          query.equalTo("participant", isme);
+          query.count({
+            success: function(count){
+              if(count>0){
+                console.log(count)
+                that.setData({
+                  hasItems:true
+                })
+              }
+            }
+          })
+        }
+      },
+    })
     
   },
   onReady:function(){
@@ -64,30 +89,22 @@ Page({
                 that.setData({
                   varietyArray:vArray
                 });
+                for(var i = 0;i < 5 ; i ++){
+                  if(vArray[i]!=0){
+                    vData.push({
+                      name: variety[i],
+                      data: vArray[i]
+                    })
+                  }
+                }
                 pieChart = new wxCharts({
                   animation: true,
                   canvasId: 'pieCanvas',
                   type: 'pie',
-                  series: [{
-                    name: '学习',
-                    data: vArray[0],
-                  }, {
-                    name: '工作',
-                    data: vArray[1],
-                  }, {
-                    name: '娱乐',
-                    data: vArray[2],
-                  }, {
-                    name: '健身',
-                    data: vArray[3],
-                  }, {
-                    name: '其它',
-                    data: vArray[4],
-                  }
-                  ],
+                  series: vData,
                   dataLabel: true,
-                  width: that.data.windowWidth - 50,
-                  height: 300
+                  width: that.data.windowWidth * 0.75,
+                  height: that.data.windowHeight * 0.4
                 });
               },
               error: function(error){
@@ -122,6 +139,7 @@ Page({
   onHide:function(){
       vArray=[0,0,0,0,0];
       itlist=[];
+      vData=[];
     // 页面隐藏
 
   },
@@ -129,6 +147,7 @@ Page({
     // 页面关闭
       vArray=[0,0,0,0,0];
       itlist=[];
+      vData=[];
   },
   setStartDate:function(e){
     that.setData({
