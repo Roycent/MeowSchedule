@@ -173,7 +173,6 @@ Page({
             var isme = new Bmob.User();
             isme.id = res.data;
             query.equalTo("participant", isme);
-
             query.find({
               success: function (results) {
                 that.setData({
@@ -198,12 +197,20 @@ Page({
                               jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","address":"'+address+'"}'
                             }
                             var jsonB=JSON.parse(jsonA);
-                            itlist.push(jsonB)
+                            itlist.push(jsonB);
+                            
                             that.setData({
                               itemList:itlist,
                               loading: true
                             })       
                 }      
+                }
+                console.log(itlist.length);
+                if(itlist.length==0){
+                  wx.showModal({
+                    title: 'Not found',
+                    showCancel:'false'
+                  })
                 }
               },
               error: function (error) {
