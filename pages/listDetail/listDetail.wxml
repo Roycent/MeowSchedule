@@ -23,3 +23,6 @@
 <view><text>{{listDate}}  {{listTime}}</text></view>
 <view>日程分类</view>
 <view><text>{{listVariety}}(同上上上)</text></view>
+<view hidden="{{isMine}}">
+<button bindtap="addToMine">添加到我的日程</button>
+</view>

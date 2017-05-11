@@ -22,7 +22,8 @@ Page({
       listDate:"",
       listVariety:"",
       listImportance:"",
-      finished:false
+      finished:false,
+      isMine:false
   },
   
   onLoad: function(options) {   
@@ -58,8 +59,11 @@ Page({
                       var time=result[0].get("time");
                       var date=result[0].get("date");
                       var finish=result[0].get("finished");
-                      console.log("fi:");
-                      console.log(finish);
+                      if(participant.id==ress.data){
+                        that.setData({
+                          isMine:true
+                        })
+                      }
                       var userPic;
                       var url;
                       if(result[0].get("pic")){
@@ -202,5 +206,87 @@ changeTitle:function(e){
               // complete
             }
           })
+  },
+  addToMine: function(){
+    var content = that.data.listContent;
+    var title = that.data.listTitle;
+    var address = that.data.listAddress;
+    var date = that.data.listDate;
+    var time = that.data.listTime;
+    var Iindex = that.data.listImportance;
+    var Vindex = that.data.listVariety;
+    var pic = that.data.listPic;
+    wx.getStorage({
+      key: 'user_id',
+      success: function (res) {
+        // success
+        var Schedule = Bmob.Object.extend("Schedule");
+        var schedule = new Schedule();
+        var me = new Bmob.User();
+        me.id = res.data;
+        var VVindex = parseInt(Vindex);
+        var IIindex = parseInt(Iindex);
+        schedule.set("participant", me);
+        schedule.set("pic",pic);
+        schedule.set("title", title);
+        schedule.set("content", content);
+        schedule.set("address", address);
+        schedule.set("plannedDate", date);
+        schedule.set("time", time);
+        schedule.set("importance", IIindex);
+        schedule.set("variety", VVindex);
+        schedule.set("finished", false);
+        console.log(res.data);
+        schedule.save(null, {
+          success: function (result) {
+            console.log("resultID:" + result.id);
+            var UserSchedule = Bmob.Object.extend("UserSchedule");
+            var us = new UserSchedule;
+            us.set("participant", me);
+            us.set("itemID", result.id);
+            us.save(null, {
+              success: function (res) {
+                console.log(res.id);
+              }
+            })
+            that.setData({
+              isLoading: false,
+              loading: false
+            });
+
+            common.dataLoading("添加日程成功", "success", function () {
+              wx.navigateBack({
+                delta: 1, // 回退前 delta(默认为1) 页面
+                success: function (res) {
+                  // success
+                },
+                fail: function (res) {
+                  // fail
+                },
+                complete: function (res) {
+                  // complete
+                }
+              })
+            })
+
+
+          },
+          error: function (result, error) {
+            console.log(error);
+            common.dataLoading("添加日程失败", "loading");
+            that.setData({
+              isLoading: false,
+              loading: false
+            })
+          }
+        });
+      },
+      fail: function (res) {
+        // fail
+      },
+      complete: function (res) {
+        // complete
+      }
+    })
   }
 })
