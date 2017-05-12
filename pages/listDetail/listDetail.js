@@ -334,16 +334,18 @@ changeTitle:function(e){
     var query = new Bmob.Query(Schedule);
     query.get(optionId,{
       success:function(result){
+        result.fetchWhenSave(true);
         result.set('title',that.data.listTitle);
         result.set('content',that.data.listContent);
-        result.set('variety',that.data.listVariety);  
-        result.set('importance',that.data.listImportance);
+        result.set('variety',parseInt(that.data.listVariety));  
+        result.set('importance',parseInt(that.data.listImportance));
         result.set('time',that.data.listTime);
+        console.log(that.data.listImportance);
         result.set('plannedDate',that.data.listDate);
         result.save();
         common.dataLoading("修改成功","success",function(){
           wx.navigateBack({
-            delta:1
+            delta:1 
           })
         })
       },
