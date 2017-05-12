@@ -80,10 +80,16 @@ Page({
                             var created_at=results[i].createdAt;
                             var _url;
                             var pic=results[i].get("pic");
+                            var picUrl=results[i].get("pictureUrl");
                             var address=results[i].get("address");
                             console.log(address);
-                            if(pic){
+                            if(pic || picUrl){
+                              if(pic){
                                 jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","attachment":"'+pic._url+'","address":"'+address+'"}'
+                              }else{
+                                jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","attachment":"'+picUrl+'","address":"'+address+'"}'
+
+                              }
                             }
                             else{
                               jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","address":"'+address+'"}'

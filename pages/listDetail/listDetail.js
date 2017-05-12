@@ -72,10 +72,17 @@ Page({
                       var url;
                       if(result[0].get("pic")){
                         url=result[0].get("pic")._url;
-                        picture=result[0].get("pic");
+                        picture=result[0].get("pic")._url;
                       }
                       else{
-                        url=null;
+                        if(result[0].get("pictureUrl")){
+                          url=result[0].get("pictureUrl");
+                          picture=url;
+                        }
+                        else{
+                          url=null;
+                          picture=null;
+                        }
                       }
                       that.setData({
                         listTitle:title,
@@ -232,7 +239,7 @@ changeTitle:function(e){
         var IIindex = parseInt(Iindex);
         schedule.set("participant", me);
         if(that.data.listPic!=null){
-          schedule.set("pic", picture);
+              schedule.set("pictureUrl", that.data.listPic);
         }
         schedule.set("title", title);
         schedule.set("content", content);
