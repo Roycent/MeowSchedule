@@ -10,19 +10,33 @@
     <image  mode="aspectFill" src="{{listPic}}" class="listPic" wx:if="{{listPic}}"></image>
 </view>
 <view>标题</view>
-<input placeholder="{{listTitle}}" bindinput="changeTitle"/>
+<input value="{{listTitle}}" bindinput="changeTitle"/>
 <view >完成<switch type="checkbox" checked="{{finished}}" bindchange="finishedIt" /></view>
-<view><text>{{listTitle}}</text></view>
 <view>内容</view>
-<view><text>{{listContent}}</text></view>
+<view><input value="{{listContent}}" bindinput="changeContent" /></view>
 <view>地址</view>
 <view><text>{{listAddress}}</text></view>
-<view>重要程度</view>
-<view><text>{{listImportance}}(可以用wx-if根据数字改成具体的)</text></view>
+
 <view>日程时间</view>
-<view><text>{{listDate}}  {{listTime}}</text></view>
+<view>
+<picker mode="date" value="{{listDate}}" start="1995-01-01" end="2055-12-31" bindchange="changeDate">
+    <text>{{listDate}}</text>
+    </picker>
+<picker mode="time" value="{{listTime}}" start="00:00" end="23:59" bindchange="changeTime">
+<text>{{listTime}}</text></picker>
+
+</view>
+<view>重要程度</view>
+<picker mode="selector" range="{{importanceArray}}" value="{{listImportance}}" bindchange="changeImportance">
+  <text>{{importanceArray[listImportance]}}</text>
+</picker>
 <view>日程分类</view>
-<view><text>{{listVariety}}(同上上上)</text></view>
+<picker mode="selector" range="{{varietyArray}}" value="{{listVariety}}" bindchange="changeVariety">
+    <text>{{varietyArray[listVariety]}}</text>
+</picker>
+<view hidden="{{!hasChanged}}">
+<button bindtap="saveChanges">保存修改</button>
+</view>
 <view hidden="{{isMine}}">
 <button bindtap="addToMine">添加到我的日程</button>
 </view>

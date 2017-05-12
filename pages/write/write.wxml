@@ -20,7 +20,7 @@
         <textarea  placeholder="添加内容" maxlength="1000"  value="" bindblur="setContent"/>
     </view>
     <view>时间选择器</view>
-<picker mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="listenerTimePickerSelected">
+<picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="listenerTimePickerSelected">
     <text>{{time}}</text>
 </picker>
 <view>重要程度选择器</view>

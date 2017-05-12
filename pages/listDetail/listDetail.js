@@ -20,10 +20,13 @@ Page({
       listPic:"",
       listTime:"",
       listDate:"",
-      listVariety:"",
-      listImportance:"",
+      listVariety:0,
+      listImportance:0,
+      varietyArray: ['学习', '工作', '娱乐', '健身', '其它'],
+      importanceArray: ['lowest', 'below normal', 'normal', 'above normal', 'highest'],
       finished:false,
-      isMine:false
+      isMine:false,
+      hasChanged:false
   },
   
   onLoad: function(options) {   
@@ -54,10 +57,10 @@ Page({
                       var content=result[0].get("content");
                       var participant=result[0].get("participant");
                       var address=result[0].get("address");
-                      var importance=result[0].get("importance");
-                      var variety=result[0].get("variety");
+                      var importance=parseInt(result[0].get("importance"));
+                      var variety=parseInt(result[0].get("variety"))  ;
                       var time=result[0].get("time");
-                      var date=result[0].get("date");
+                      var date=result[0].get("plannedDate");
                       var finish=result[0].get("finished");
                       if(participant.id==ress.data){
                         that.setData({
@@ -80,7 +83,7 @@ Page({
                         listVariety:variety,
                         listImportance:importance,
                         listTime:time,
-                        listdate:date,
+                        listDate:date,
                         loading: true,
                         finished:finish
                       })
@@ -288,5 +291,65 @@ changeTitle:function(e){
         // complete
       }
     })
+  },
+  changeTitle: function(e){
+    that.setData({
+      hasChanged:true,
+      listTitle: e.detail.value
+    })
+  },
+  changeContent: function(e){
+    that.setData({
+      hasChanged:true,
+      listContent: e.detail.value
+    })
+  },
+  changeVariety: function(e){
+    that.setData({
+      hasChanged:true,
+      listVariety: e.detail.value
+    })
+  },
+  changeImportance: function(e){
+    that.setData({
+      hasChanged:true,
+      listImportance:e.detail.value
+    })
+    console.log(that.data.listImportance);
+  },
+  changeTime:function(e){
+    that.setData({
+      hasChanged:true,
+      listTime:e.detail.value
+    })
+  },
+  changeDate:function(e){
+    that.setData({
+      hasChanged:true,
+      listDate:e.detail.value
+    })
+  },
+  saveChanges: function(){
+    var Schedule = Bmob.Object.extend("Schedule");
+    var query = new Bmob.Query(Schedule);
+    query.get(optionId,{
+      success:function(result){
+        result.set('title',that.data.listTitle);
+        result.set('content',that.data.listContent);
+        result.set('variety',that.data.listVariety);  
+        result.set('importance',that.data.listImportance);
+        result.set('time',that.data.listTime);
+        result.set('plannedDate',that.data.listDate);
+        result.save();
+        common.dataLoading("修改成功","success",function(){
+          wx.navigateBack({
+            delta:1
+          })
+        })
+      },
+      error:function(error){
+        console.log(error)
+      }
+    }) 
   }
 })
