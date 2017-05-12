@@ -7,6 +7,7 @@ var optionId;
 var common = require('../template/getCode.js')
 var Bmob=require("../../utils/bmob.js");
 var commentlist;
+var picture;
 Page({
   data:{
       limit:5,
@@ -71,6 +72,7 @@ Page({
                       var url;
                       if(result[0].get("pic")){
                         url=result[0].get("pic")._url;
+                        picture=result[0].get("pic");
                       }
                       else{
                         url=null;
@@ -218,7 +220,6 @@ changeTitle:function(e){
     var time = that.data.listTime;
     var Iindex = that.data.listImportance;
     var Vindex = that.data.listVariety;
-    var pic = that.data.listPic;
     wx.getStorage({
       key: 'user_id',
       success: function (res) {
@@ -230,7 +231,9 @@ changeTitle:function(e){
         var VVindex = parseInt(Vindex);
         var IIindex = parseInt(Iindex);
         schedule.set("participant", me);
-        schedule.set("pic",pic);
+        if(that.data.listPic!=null){
+          schedule.set("pic", picture);
+        }
         schedule.set("title", title);
         schedule.set("content", content);
         schedule.set("address", address);
