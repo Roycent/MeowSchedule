@@ -4,10 +4,12 @@
   页面加载中...
 </loading>
 <view hidden="{{!loading}}">
+<view><button bindtap="showSheet">{{selectedTime}}</button></view>
 
 <view class="container" hidden="{{!hasItems}}">
     <canvas canvas-id="pieCanvas" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
 </view>
+<view hidden="{{hasItems}}">无结果</view>
 
 <view><text>学习:{{varietyArray[0]}}</text></view>
 <view><text>工作:{{varietyArray[1]}}</text></view>

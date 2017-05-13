@@ -8,7 +8,8 @@ var itlist = new Array();
 var variety = ['学习','工作','娱乐','健身','其它']
 var vData = new Array();
 var pieChart = null;
-
+var actionSheetItems = ["2017年2月", "2017年3月", "2017年4月", "2017年5月"]
+var dates = ["2017-02", "2017-03", "2017-04", "2017-05"]
 Page({
   data:{
     varietyArray:[0,0,0,0,0],
@@ -18,7 +19,10 @@ Page({
     windowWidth:0,
     startDate:"2017-01-01",
     endDate:"2017-05-01",
-    itemList:[]
+    itemList:[],
+    selectedTime:"所有时间", 
+    sTime:null,
+    noChooseTime:true
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
@@ -63,7 +67,9 @@ Page({
   },
   onShow:function(){
     // 页面显示
+    console.log("onShow called")
     vArray = [0,0,0,0,0];
+    vData = [];
     var myInterval = setInterval(function(){
       wx.getStorage({
         key: 'user_id',
@@ -76,15 +82,28 @@ Page({
             var isme = new Bmob.User();
             isme.id = res.data;
             query.equalTo("participant",isme);
+            if(that.data.sTime!=null){
+              that.setData({
+                hasItems:false,
+                noChooseTime:false
+              })
+            }
             query.find({
               success: function(results){
                 that.setData({
                   loading:true
                 });
+                console.log("find");
+                console.log(results.length)
                 for(var i = 0; i < results.length; i++){
+                  if(that.data.noChooseTime ||　results[i].get("plannedDate")>(that.data.sTime+"-00") && results[i].get("plannedDate")<(that.data.sTime+"-32")){
+                    that.setData({
+                      hasItems:true
+                    })
                   var tempVariety = results[i].get("variety");
                   console.log(tempVariety);
                   vArray[tempVariety]++;
+                  }
                 }
                 that.setData({
                   varietyArray:vArray
@@ -93,19 +112,24 @@ Page({
                   if(vArray[i]!=0){
                     vData.push({
                       name: variety[i],
-                      data: vArray[i]
+                      data: vArray[i],
+                      hasItems: true
                     })
                   }
                 }
-                pieChart = new wxCharts({
-                  animation: true,
-                  canvasId: 'pieCanvas',
-                  type: 'pie',
-                  series: vData,
-                  dataLabel: true,
-                  width: that.data.windowWidth * 0.75,
-                  height: that.data.windowHeight * 0.4
-                });
+                if(that.data.hasItems){
+                  console.log("cccccccccc")
+                    pieChart = new wxCharts({
+                    animation: true,
+                    canvasId: 'pieCanvas',
+                    type: 'pie',
+                    series: vData,
+                    dataLabel: true,
+                    width: that.data.windowWidth * 0.75,
+                    height: that.data.windowHeight * 0.4
+                  });
+                }
+
               },
               error: function(error){
                 common.loading(error,"loading");
@@ -118,6 +142,7 @@ Page({
           }
         },
         fail: function(res) {
+          console.log(res)
           // fail
         },
         complete: function(res) {
@@ -236,6 +261,19 @@ Page({
   },
   touchHandler: function (e) {
     console.log(pieChart.getCurrentDataIndex(e));
-  },        
+  },
+  showSheet:function(){
+    wx.showActionSheet({
+      itemList: ["2017年2月", "2017年3月", "2017年4月", "2017年5月","所有时间"],
+      success(res){
+        that.setData({
+          selectedTime:actionSheetItems[res.tapIndex],
+          sTime:dates[res.tapIndex]
+        })
+        that.onShow()
+      }
+    })
+  },
+
 
 })
