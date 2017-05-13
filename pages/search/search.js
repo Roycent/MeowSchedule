@@ -6,7 +6,7 @@ var itlist = new Array();
 Page({
   data:{
     itemList: [],
-    limit: 6,
+    limit: 20,
     loading: false,
     windowHeight: 0,
     windowWidth: 0,
@@ -33,10 +33,10 @@ Page({
             var isme = new Bomb.User();
             isme.id = res.data;
             query.equalTo("participant", isme);
-            if(that.data.limit==6){
+            if(that.data.limit==20){
               query.limit(that.data.limit);
             }
-            if(that.data.limit>6){
+            if(that.data.limit>20){
               query.limit(2);
               query.skip(that.data.limit-2);
             }

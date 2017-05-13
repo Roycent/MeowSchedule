@@ -7,8 +7,7 @@
 </view>
 <navigator url="../write/write">toWrite</navigator>
 <navigator url="../seeMore/seeMore">toSeeMore</navigator>
-<input placeholder="输入搜索内容" bindinput="setSearchKeyword"/>
-<navigator url="../search/search?searchKeyword={{searchKeyword}}">toSearch</navigator>
+<input placeholder="输入搜索内容" bindconfirm="toSearch" confirm-type="search" bindinput="setSearchKeyword"/>
 <import src="../template/list.wxml" />
 <scroll-view lower-threshold="800" bindscrolltolower="pullUpLoad" bindscrolltoupper="pullDownRefresh" scroll-y="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px; ">
 <!--<view class="index_list">-->
