@@ -4,39 +4,52 @@
 <loading hidden="{{loading}}">
   页面加载中...
 </loading>
+<view hidden="{{!loading}}">
 <view bindtap="deleteThis">删除删除</view>
 <view><text>图片</text></view>
 <view>
     <image  mode="aspectFill" src="{{listPic}}" class="listPic" wx:if="{{listPic}}"></image>
 </view>
-<view>标题</view>
-<input value="{{listTitle}}" bindinput="changeTitle"/>
-<view >完成<switch type="checkbox" checked="{{finished}}" bindchange="finishedIt" /></view>
-<view>内容</view>
-<view><input value="{{listContent}}" bindinput="changeContent" /></view>
-<view>地址</view>
-<view><text>{{listAddress}}</text></view>
+  <view >完成<switch type="checkbox" checked="{{finished}}" bindchange="finishedIt" /></view>
+<view hidden="{{!wannaChange}}">
+  <view>标题</view>
+  <input value="{{listTitle}}" bindinput="changeTitle"/>
+  <view>内容</view>
+  <view><input value="{{listContent}}" bindinput="changeContent" /></view>
+  <view>地址</view>
+  <view><text>{{listAddress}}</text></view>
 
-<view>日程时间</view>
-<view>
-<picker mode="date" value="{{listDate}}" start="1995-01-01" end="2055-12-31" bindchange="changeDate">
-    <text>{{listDate}}</text>
-    </picker>
-<picker mode="time" value="{{listTime}}" start="00:00" end="23:59" bindchange="changeTime">
-<text>{{listTime}}</text></picker>
+  <view>日程时间</view>
+  <view>
+  <picker mode="date" value="{{listDate}}" start="1995-01-01" end="2055-12-31" bindchange="changeDate">
+      <text>{{listDate}}</text>
+      </picker>
+  <picker mode="time" value="{{listTime}}" start="00:00" end="23:59" bindchange="changeTime">
+  <text>{{listTime}}</text></picker>
 
+  </view>
+  <view>重要程度</view>
+  <picker mode="selector" range="{{importanceArray}}" value="{{listImportance}}" bindchange="changeImportance">
+    <text>{{importanceArray[listImportance]}}</text>
+  </picker>
+  <view>日程分类</view>
+  <picker mode="selector" range="{{varietyArray}}" value="{{listVariety}}" bindchange="changeVariety">
+      <text>{{varietyArray[listVariety]}}</text>
+  </picker>
+  <view hidden="{{!hasChanged}}">
+  <button bindtap="saveChanges">保存修改</button>
+  </view>
 </view>
-<view>重要程度</view>
-<picker mode="selector" range="{{importanceArray}}" value="{{listImportance}}" bindchange="changeImportance">
-  <text>{{importanceArray[listImportance]}}</text>
-</picker>
-<view>日程分类</view>
-<picker mode="selector" range="{{varietyArray}}" value="{{listVariety}}" bindchange="changeVariety">
-    <text>{{varietyArray[listVariety]}}</text>
-</picker>
-<view hidden="{{!hasChanged}}">
-<button bindtap="saveChanges">保存修改</button>
+
+<view hidden="{{wannaChange}}">
+  <view><text>标题:{{listTitle}}</text></view>
+  <view><text>内容：{{listContent}}</text></view>
+  <view><text>重要：{{importanceArray[listImportance]}}</text></view>
+  <view><text>分类：{{varietyArray[listVariety]}}</text></view>
+  <view><text>时间： {{listDate}}  {{listTime}}</text></view>
+  <button bindtap="wannaChange">修改日程</button>
+  <view hidden="{{isMine}}">
+  <button bindtap="addToMine">添加到我的日程</button>
+  </view>
 </view>
-<view hidden="{{isMine}}">
-<button bindtap="addToMine">添加到我的日程</button>
 </view>

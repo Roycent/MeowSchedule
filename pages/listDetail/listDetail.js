@@ -27,7 +27,8 @@ Page({
       importanceArray: ['lowest', 'below normal', 'normal', 'above normal', 'highest'],
       finished:false,
       isMine:false,
-      hasChanged:false
+      hasChanged:false,
+      wannaChange:false
   },
   
   onLoad: function(options) {   
@@ -363,5 +364,10 @@ changeTitle:function(e){
         console.log(error)
       }
     }) 
+  },
+  wannaChange:function(){
+    that.setData({
+      wannaChange:true
+    })
   }
 })
