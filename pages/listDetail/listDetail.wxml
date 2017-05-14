@@ -36,9 +36,7 @@
   <picker mode="selector" range="{{varietyArray}}" value="{{listVariety}}" bindchange="changeVariety">
       <text>{{varietyArray[listVariety]}}</text>
   </picker>
-  <view hidden="{{!hasChanged}}">
-  <button bindtap="saveChanges">保存修改</button>
-  </view>
+  <button bindtap="saveChanges" disabled="{{!hasChanged}}">保存修改</button>
 </view>
 
 <view hidden="{{wannaChange}}">
