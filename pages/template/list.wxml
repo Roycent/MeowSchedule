@@ -11,9 +11,12 @@
        </view>
     
     <view class="list_header">
-        <view class="list_header_left">
-           
-        <view>{{userNick}}</view>
+        <view class="list_header_right_top">
+        <view class="icon iconfont icon-black" wx:if="{{listImportance==0}}"></view>
+        <view class="icon iconfont icon-green" wx:elif="{{listImportance==1}}"></view>
+        <view class="icon iconfont icon-blue" wx:elif="{{listImportance==2}}"></view>
+        <view class="icon iconfont icon-yellow" wx:elif="{{listImportance==3}}"></view>
+        <view class="icon iconfont icon-red" wx:elif="{{listImportance==4}}"></view>
         </view>
         <view class="list_header_right">{{listTime}}</view>
     </view>

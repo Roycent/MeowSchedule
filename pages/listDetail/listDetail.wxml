@@ -36,7 +36,7 @@
 
   <view class="Option">
   <view><image src="../../pages/Resource/Location.png" class="Location"></image>
-  <view class="AddLocation">地址：{{listAddress}}</view>
+  <view class="AddLocation" bindtap="changeAddr">地址：{{listAddress}}</view>
   </view>
   </view>
 

@@ -340,6 +340,26 @@ changeTitle:function(e){
       listDate:e.detail.value
     })
   },
+  changeAddr: function(){
+    var that = this;
+    wx.chooseLocation({
+      success: function(res){
+        var point = {
+          latitude: res.latitude,
+          longitude: res.longitude
+          };
+        that.setData({
+          listAddress : res.name || res.address
+          }); 
+          },
+      fail: function(res) {
+        console.log(res);
+        },
+      complete: function(res) {
+        console.log(res);
+        }
+    })
+  },
   saveChanges: function(){
     var Schedule = Bmob.Object.extend("Schedule");
     var query = new Bmob.Query(Schedule);
@@ -351,6 +371,7 @@ changeTitle:function(e){
         result.set('variety',parseInt(that.data.listVariety));  
         result.set('importance',parseInt(that.data.listImportance));
         result.set('time',that.data.listTime);
+        result.set('address',that.data.listAddress);
         console.log(that.data.listImportance);
         result.set('plannedDate',that.data.listDate);
         result.save();

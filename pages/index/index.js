@@ -8,7 +8,7 @@ var itlist= new Array();
 Page({
   data: {
     itemList: [],
-    limit: 10,
+    limit: 15,
     loading: false,
     windowHeight: 0,
     windowWidth: 0,
@@ -17,6 +17,7 @@ Page({
     countFIt:0
   },
   onLoad: function (options) {
+    that=this;
    itlist=[];
   },
   onShow: function () {
@@ -53,7 +54,7 @@ Page({
                 })
               }
             });
-            if (that.data.limit == 10) {
+            if (that.data.limit == 15) {
               query.limit(that.data.limit);
             }
 
@@ -79,17 +80,17 @@ Page({
                   var pic = results[i].get("pic");
                   var picUrl = results[i].get("pictureUrl");
                   var address = results[i].get("address");
-                  console.log(address);
+                  var importance = results[i].get("importance");
                   if (pic || picUrl) {
                     if (pic) {
-                      jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","attachment":"' + pic._url + '","address":"' + address + '"}'
+                      jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","attachment":"' + pic._url + '","address":"' + address + '","importance":"'+ importance + '"}'
                     } else {
-                      jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","attachment":"' + picUrl + '","address":"' + address + '"}'
+                      jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","attachment":"' + picUrl + '","address":"' + address + '","importance":"'+ importance + '"}'
 
                     }
                   }
                   else {
-                    jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","address":"' + address + '"}'
+                    jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","address":"' + address + '","importance":"'+ importance + '"}'
                   }
                   var jsonB = JSON.parse(jsonA);
                   itlist.push(jsonB)
@@ -143,7 +144,7 @@ Page({
     })
   },
   loadMore: function(){
-    if(that.data.countIt>10){
+    if(that.data.countIt>15){
       wx.getStorage({
         key: 'user_id',
         success: function (res) {
@@ -151,11 +152,11 @@ Page({
             var Schedule = Bmob.Object.extend("Schedule");
             var query = new Bmob.Query(Schedule);
             var isme = new Bmob.User();
-            isme.id = ress.data;
+            isme.id = res.data;
             query.equalTo("participant", isme);
             query.skip(that.data.limit);
             query.limit(2);
-            query.desceding("createdAt");
+            query.descending("createdAt");
             query.find({
               success: function (results) {
                 that.setData({
@@ -199,7 +200,7 @@ Page({
                 console.log(error)
               }
             });
-            setData({
+            that.setData({
               limit : limit + 2
             })
           }

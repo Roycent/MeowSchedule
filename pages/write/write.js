@@ -4,7 +4,9 @@ var Bmob=require("../../utils/bmob.js")
 var common = require('../template/getCode.js')
 var wxMarkerData = []; 
 var that;
+
 Page({
+  
   onLoad:function(options){
     that = this;
     that.setData({
@@ -26,7 +28,30 @@ Page({
       Vindex:1,
       markers:[]
     });
-    console.log("xixi");//end of onLoad.that.setData
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //一月是0
+    var yyyy = today.getFullYear();
+    var hour = today.getHours();
+    var minutes = today.getMinutes();
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10) {
+      mm='0'+mm
+      }
+    if(hour<10){
+      hour='0'+hour
+    }
+    if(minutes<10){
+      minutes='0'+minutes
+    }
+    var thisDate = yyyy+'-'+mm+'-'+dd;
+    var thisTime = hour+':'+minutes;
+    that.setData({
+      date:thisDate,
+      time:thisTime
+    })
   },//end of onLoad
   onReady:function(){
     wx.hideToast();

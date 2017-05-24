@@ -14,7 +14,7 @@
 <!--<view class="index_list">-->
 <view class="MainView">
   <navigator url="../listDetail/listDetail?itemId={{item.id}}" hover-class="navigator-hover" wx:for-items="{{itemList}}" wx:key="itemListId" >
-    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address,listTime:item.created_at}}" />    
+    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address,listTime:item.created_at,listImportance:item.importance}}" />    
      
   </navigator>
   </view>
