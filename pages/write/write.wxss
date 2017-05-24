@@ -1,1 +1,84 @@
-/* pages/write/write.wxss */
+ /* pages/write/write.wxss *//* pages/write/write.wxss */
+
+.TitleStyle/*输入标题样式*/
+{
+    height: 100rpx;
+    font-size: 20pt;
+    border-bottom: 2rpx solid silver;
+    font-weight: 500;
+}
+.TitleFont/*输入标题文字样式*/
+{
+    color: #b2b2b2;
+    font-weight: 500;
+}
+.AddButton/*添加日程按钮样式*/
+{
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color:black;
+    color: white;
+    margin-top: 20rpx;
+}
+.AddLocation
+{
+    font-size: 30rpx;
+    color: #b2b2b2;
+}
+.Out/*最外层边框*/
+{
+    border:4rpx solid crimson;
+    margin: 20rpx;
+    padding: 10rpx;
+    border-radius: 20rpx;
+    padding-bottom: 20rpx;
+}
+.AddPicture/*添加照片按钮样式*/
+{
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 30rpx;
+}
+.ButtonClick
+{
+    background-color: #b2b2b2;
+}
+.Location
+{
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+}
+.LocationButton
+{
+  border: 0;
+  outline-color: #f2f3f4;
+  background-color: #f2f3f4;
+  border-color: 1rpx solid #f2f3f4;
+  border-radius: 25rpx;
+  font-size: 24rpx;
+  margin-left: 70%;
+  margin-top: 0;
+  color:#b2b2b2;
+
+}
+.Text/*内容样式*/
+{
+  background:#f8f8ff;
+  border-radius: 30rpx;
+  margin-top: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+.OptionText
+{
+  float: left;
+  width: 25%;
+}
+.Option
+{
+  line-height: 80rpx;
+  font-size: 34rpx;
+  height: 80rpx;
+  border-bottom: 2rpx solid #b2b2b2;
+}

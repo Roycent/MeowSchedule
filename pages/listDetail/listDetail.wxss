@@ -1,1 +1,11 @@
-/* pages/listDetail/listDetail.wxss */
+@import "../write/write.wxss";
+.ButtonPanel
+{
+  text-align: right;
+}
+.Operate
+{
+  font-size: 12pt;
+  color: #576b95;
+  margin: 10rpx;
+}

@@ -1,9 +1,23 @@
 //公用模版
 
 <template name="listTemp">
-    <image  mode="aspectFill" src="{{listPic}}" class="listPic" wx:if="{{listPic}}" bindtap="seeBig"></image>
+
+ <view  class="MainView">   
+    <image  mode="aspectFill" src="{{listPic}}" class="MainViewImage" wx:if="{{listPic}}" bindtap="seeBig"></image>
     
-    <view wx-if="{{listTitle!=''}}">标题：{{listTitle}}</view>
-    <view><text>内容：{{listContent}}</text></view>
-    <view><text>地址：{{listAddress}}</text></view>
+         <view class="MainlistView" wx-if="{{listTitle!=''}}">{{listTitle}}</view>
+        <view class="MainlistContent">
+          <text class="MainViewtext">{{listContent}}</text>
+       </view>
+    
+    <view class="list_header">
+        <view class="list_header_left">
+           
+        <view>{{userNick}}</view>
+        </view>
+        <view class="list_header_right">{{listTime}}</view>
+    </view>
+    
+</view>
 </template>
+

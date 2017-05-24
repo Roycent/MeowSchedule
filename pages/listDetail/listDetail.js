@@ -355,6 +355,7 @@ changeTitle:function(e){
         result.set('plannedDate',that.data.listDate);
         result.save();
         common.dataLoading("修改成功","success",function(){
+          wx.naviga
           wx.navigateBack({
             delta:1 
           })
