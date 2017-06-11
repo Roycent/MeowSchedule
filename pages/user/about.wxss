@@ -1,0 +1,85 @@
+/* pages/user/about.wxss */
+page
+{
+  background-color: #EFEFF4;
+}
+.main{
+  
+    border-radius: 6px; 
+    box-shadow: rgba(0, 0, 0, 0.239216) 0px 2px 5px 0px; 
+    margin-top: 20rpx;
+    margin-bottom: 37.5rpx; 
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+    height: 100%;
+    background-size: 100%;
+    background: white;
+}
+.MyView{
+     width: 100%;
+     height: 180rpx; 
+     background-position: 50% 50%; 
+     background-size: cover;  
+     margin-bottom: 5px; 
+     margin-top: 2%;
+     display: flex;
+     
+}
+.MyViewRight{
+     width: 100%;
+     height: 180rpx; 
+     background-position: 50% 50%; 
+     background-size: cover; 
+     margin-bottom: 10rpx; 
+     margin-top: 2%;
+     display: flex;
+}
+.MyIcon{
+    vertical-align:middle;
+    height: 100rpx;
+    width: 100rpx;
+    margin-top: 50rpx;
+    margin-left: 50rpx;
+    margin-right: 20rpx;
+    float: left;
+    border:1px solid #CCCCCC;
+    border-radius: 48px; 
+    border-bottom-right-radius: 48px; 
+    border-bottom-left-radius: 48px; 
+    border-top-right-radius: 48px; 
+    border-top-left-radius: 48px; 
+}
+.info
+{
+  width: 70%;
+}
+.infoRight
+{
+  padding-top: 20rpx;
+  width: 70%;
+  margin-left: 50rpx;
+}
+.name{
+    line-height: 80rpx;
+    font-size: 20pt;
+    color:darkgray;
+}
+.nameRight{
+  line-height: 80rpx;
+    font-size: 20pt;
+    color:darkgray;
+   text-align: right;
+}
+.description{
+    font-size: 10pt;
+    color:darkgray;
+    height: 60rpx;
+    border-bottom: #EFEFF4 1px solid;
+}
+.descriptionRight{
+    font-size: 10pt;
+    color:darkgray;
+    margin-left: 70rpx;
+    height: 80rpx;
+    border-bottom: #EFEFF4 1px solid;
+}

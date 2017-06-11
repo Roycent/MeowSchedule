@@ -13,7 +13,7 @@ Page({
       src:"",
       isSrc:false,
       title:"",
-      address:"",
+      address:"位置",
       content:"",
       isLoading:false,
       loading:false,
@@ -157,6 +157,11 @@ Page({
       Vindex: e.detail.value
     })
   },
+  writeAddress:function(e){
+    that.setData({
+      address:e.detail.value
+    })
+  },
   //保存新的日程
   sendNewItem: function(e){
     var content = e.target.dataset.content;
@@ -166,8 +171,7 @@ Page({
     var time = e.target.dataset.time;
     var Iindex = e.target.dataset.iindex;
     var Vindex = e.target.dataset.vindex;
-    //判断内容是否为空，BUG:点两次才好使= =
-    if(content==""){
+    if(content==" "){
       common.dataLoading("内容不能为空","loading");
     }else{
       that.setData({
@@ -193,6 +197,7 @@ Page({
           schedule.set("importance",IIindex);
           schedule.set("variety",VVindex);
           schedule.set("finished",false);
+          schedule.set("shareFlage",false);
           console.log(res.data);
           if(that.data.isSrc==true){
             var name = that.data.src;
@@ -209,7 +214,7 @@ Page({
               us.set("itemID",result.id);
               us.save(null,{
                 success: function(res){
-                  console.log(res.id);
+                  console.log(res.id+" userScheduleAdded");
                 }
               })
               that.setData({

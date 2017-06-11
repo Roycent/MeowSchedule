@@ -1,1 +1,227 @@
 /* pages/seeMore/seeMore.wxss */
+/*button{
+  width:200rpx;
+  height:60rpx;
+  line-height:60rpx;
+  text-align:center;
+  font-size:12px;
+  border:0 none;
+  background:#CCCCCC;
+  margin-right: 10px;
+}
+
+*/
+page
+{
+  background: #EFEFF4;
+} 
+.Out/*最外层边框*/
+{
+    border-radius: 12rpx; 
+    background-color: rgb(255, 255, 255); 
+    box-shadow: rgba(0, 0, 0, 0.239216) 0rpx 5rpx 5rpx 0rpx; 
+    margin-bottom: 37.5rpx; 
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+    padding-bottom: 30rpx;
+    padding-top: 10rpx;
+    border: 0.6rpx solid #b2b2b2;
+}
+.timeOut
+{
+    border-radius: 12rpx; 
+    background-color: rgba(255, 255, 255,0.85); 
+    box-shadow: rgba(0, 0, 0, 0.239216) 0rpx 4rpx 10rpx 0rpx; 
+    margin-top: 37.5rpx; 
+    margin-bottom: 50rpx; 
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+}
+.container{
+  margin-top:0rpx;
+  text-align: left;
+  z-index: -10;
+  margin-bottom: 0rpx;
+}
+/* pages/seeMore/seeMore.wxss */
+
+.titleInfo
+{
+  width: 400rpx;
+  vertical-align: middle;
+  line-height: 80rpx;
+  overflow:hidden;
+  font-size: 30rpx;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.dateInfo
+{
+  width: 150rpx;
+  line-height: 80rpx;
+  vertical-align: middle;
+  font-size: 26rpx;
+  margin-left: 10rpx;
+  color:darkgray;
+}
+.item
+{
+  height: 80rpx;
+  margin: 0 auto;
+  width: 96%;
+  background-color: white;
+  border-bottom:2rpx solid gainsboro;
+  background:rgba(255,255,255,0.8);
+  display: flex;
+}
+.iconStyle
+{
+  vertical-align:middle;
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 20rpx;
+}
+.iconPannel
+{
+  vertical-align: middle;
+  height: 80rpx;
+  padding-top: 20rpx;
+}
+
+.calendarBtn{
+   padding-top: 20rpx; 
+    padding-bottom: 20rpx; 
+    padding-right: 20rpx; 
+    position: fixed;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 10;
+    background: whitesmoke;
+    margin-left: 82%;
+    margin-top:10%;
+    border-radius: 50rpx;
+    background-color: rgba(53, 53,53, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.239216) 0rpx 4rpx 4rpx 0rpx;
+}
+.calendarImage{
+  width: 50rpx;
+  height:50rpx;
+  margin-left: 20rpx;
+}
+.btnImage{
+  width: 50rpx;
+  height:50rpx;
+  margin-left: 20rpx;
+}
+.timerShaftBtn{
+    z-index: 10;
+    padding-top: 20rpx; 
+    padding-bottom: 20rpx; 
+    padding-right: 20rpx; 
+    position: fixed;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 30%;
+    margin-left: 82%;
+    border-radius: 50rpx;
+    background-color: rgba(53, 53,53, 0.85);
+    box-shadow: rgba(0, 0, 0, 0.239216) 0px 4rpx 4rpx 0rpx;
+}
+.diagramBtn{
+    z-index: 10;
+    padding-top: 20rpx; 
+    padding-bottom: 20rpx; 
+    padding-right: 20rpx; 
+    position: fixed;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 30%;
+    margin-left: 82%;
+    border-radius: 50rpx;
+    background-color: rgba(53, 53,53, 0.85);
+    box-shadow: rgba(0, 0, 0, 0.239216) 0rpx 4rpx 4rpx 0rpx;
+}
+
+
+
+
+/*时间选择器*/
+.slidedown{
+    transform:  translateY(0%);
+}
+.temp view{
+    border-bottom: 2rpx solid #d1d3d4;
+    font-size: 28rpx;
+    color: #666;
+}
+.temp{
+    position: relative;
+    z-index: 4;
+}
+.temp1{
+    display: none;
+    width: 100%;
+    max-height: 550rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+.content{
+    display: inline-block;
+}
+.temp2{
+    display: none;
+    width: 100%;
+    max-height: 750rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+
+@keyframes slidown{
+    from{
+        transform:  translateY(-100%);
+    }
+    to{
+        transform:  translateY(0%);
+    }
+}
+.slidown{
+    display: block;
+    animation: slidown .3s ease-in both;
+    width: 80%;
+
+}
+@keyframes slidup{
+    from{
+        transform:  translateY(0%);
+    }
+    to{
+        transform:  translateY(-100%);
+    }
+}
+.slidup{
+    display: block;
+    animation: slidup .3s ease-in both;
+    width:80%;
+}
+.disappear{
+    display: none;
+}
+.timeSelectionItems{
+    display: none;
+    width: 100%;
+    max-height: 550rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}

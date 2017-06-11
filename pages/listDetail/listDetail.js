@@ -4,10 +4,13 @@
 var app = getApp()
 var that;
 var optionId;
+var isme;
 var common = require('../template/getCode.js')
 var Bmob=require("../../utils/bmob.js");
 var commentlist;
 var picture;
+var parts=[];
+var itlist = new Array();
 Page({
   data:{
       limit:5,
@@ -28,14 +31,16 @@ Page({
       finished:false,
       isMine:false,
       hasChanged:false,
-      wannaChange:false
+      wannaChange:false,
+      itemList:[],
+      shareState:false,
   },
   
   onLoad: function(options) {   
       that=this;
       optionId=options.itemId;
       console.log(options.itemId);
-      
+      itlist = [];
   },
   onReady:function(){
      wx.hideToast() 
@@ -43,6 +48,7 @@ Page({
   },
   onShow: function() {  
       var myInterval=setInterval(getReturn,500);
+      itlist=[];
       function getReturn(){
           wx.getStorage({
             key: 'user_id',
@@ -50,63 +56,104 @@ Page({
               if(ress.data){
                 clearInterval(myInterval)
                 var Schedule = Bmob.Object.extend("Schedule");
+                var userSchedule = Bmob.Object.extend("UserSchedule");
                 var query = new Bmob.Query(Schedule);
+                var userScheduleQuery=new Bmob.Query(userSchedule);
+                isme = ress.data;
                 query.equalTo("objectId", optionId);
-                query.include("participant");
+                console.log("optionId "+optionId);
                 query.find({
-                    success: function(result) {
-                      var title=result[0].get("title");
-                      var content=result[0].get("content");
-                      var participant=result[0].get("participant");
-                      var address=result[0].get("address");
-                      var importance=parseInt(result[0].get("importance"));
-                      var variety=parseInt(result[0].get("variety"))  ;
-                      var time=result[0].get("time");
-                      var date=result[0].get("plannedDate");
-                      var finish=result[0].get("finished");
-                      if(participant.id==ress.data){
-                        that.setData({
-                          isMine:true
-                        })
-                      }
-                      var userPic;
-                      var url;
-                      if(result[0].get("pic")){
-                        url=result[0].get("pic")._url;
-                        picture=result[0].get("pic")._url;
-                      }
-                      else{
-                        if(result[0].get("pictureUrl")){
-                          url=result[0].get("pictureUrl");
-                          picture=url;
-                        }
-                        else{
-                          url=null;
-                          picture=null;
-                        }
-                      }
+                  success: function (result) {
+                    var title = result[0].get("title");
+                    var content = result[0].get("content");
+                    var address = result[0].get("address");
+                    var importance = parseInt(result[0].get("importance"));
+                    var variety = parseInt(result[0].get("variety"));
+                    var time = result[0].get("time");
+                    var date = result[0].get("plannedDate");
+                    var finish = result[0].get("finished");
+                    var shareStateTmp=result[0].get("shareFlag");
+                    //that.data.shareState=result[0].get("shareFlag");
+                    /*if (participant.id == ress.data) {
                       that.setData({
-                        listTitle:title,
-                        listContent:content,
-                        listPic:url,
-                        listAddress:address,
-                        listVariety:variety,
-                        listImportance:importance,
-                        listTime:time,
-                        listDate:date,
-                        loading: true,
-                        finished:finish
+                        isMine: true
                       })
-                    },
-                    error: function(error) {
-                        // common.dataLoading(error,"loading");
-                        that.setData({
-                          loading: true
-                        })
-                        console.log(error)
+                    }*/
+                    
+                    var userPic;
+                    var url;
+                    if (result[0].get("pic")) {
+                      url = result[0].get("pic")._url;
+                      picture = result[0].get("pic")._url;
                     }
-                  }); 
-                  
+                    else {
+                      if (result[0].get("pictureUrl")) {
+                        url = result[0].get("pictureUrl");
+                        picture = url;
+                      }
+                      else {
+                        url = null;
+                        picture = null;
+                      }
+                    }
+                    that.setData({
+                      listTitle: title,
+                      listContent: content,
+                      listPic: url,
+                      listAddress: address,
+                      listVariety: variety,
+                      listImportance: importance,
+                      listTime: time,
+                      listDate: date,
+                      loading: true,
+                      finished: finish,
+                      shareState:shareStateTmp
+                    })
+                  },
+                  error: function (error) {
+                    // common.dataLoading(error,"loading");
+                    that.setData({
+                      loading: true
+                    })
+                    console.log(error)
+                  }
+                });  
+                var aUser = new Bmob.Object.extend("_User");
+                var aUserQuery = new Bmob.Query(aUser);
+                userScheduleQuery.equalTo("itemID", optionId);
+                userScheduleQuery.find({
+                      success:function(results){
+                        for(var i=0;i<results.length;i++){
+                          aUserQuery.get(results[i].get("participant").id,{
+                            success:function(res){
+                              var username = res.get("username");
+                              var userPic=res.get("userPic");
+                              var jsonA;
+                              jsonA = '{"username":"' + username + '","userPic":"' + userPic + '"}';
+                              var jsonB = JSON.parse(jsonA);
+                              itlist.push(jsonB);
+                              that.setData({
+                                itemList: itlist,
+                                loading: true
+                              })
+                            }
+                          })
+                        };
+                        
+                      }
+                    })
+                userScheduleQuery.equalTo("participant", isme);
+                userScheduleQuery.count({
+                  success: function (count) {
+                    console.log(count);
+                    if (parseInt(count)>=1) {
+                      console.log("change");
+                      that.setData({
+                        isMine: true
+                      })
+                    }
+                  }
+                });
                 }
                 
             } 
@@ -115,6 +162,30 @@ Page({
 
   },
   onShareAppMessage: function () {
+    var Schedule = Bmob.Object.extend("Schedule");
+    var query = new Bmob.Query(Schedule);
+    query.equalTo("objectId", optionId);
+    query.find({
+      success: function (result) {
+        var shareFlag = result[0].get("shareFlag");
+        console.log(shareFlag);
+        if (!shareFlag) {
+          shareFlag = true;
+        }
+        result[0].set('shareFlag', shareFlag);
+        result[0].save();
+        console.log(shareFlag);
+        that.setData({
+          shareState: shareFlag,
+        })
+      },
+      error: function (error) {
+        // common.dataLoading(error,"loading");
+        that.setData({
+          loading: true
+        })
+      }
+    })
       return {
         title:that.data.listTitle,
         desc: that.data.listContent,
@@ -141,12 +212,7 @@ Page({
                 success: function(result) {
                   result.destroy({
                     success: function(myObject) {
-                      // 删除成功
-                      common.dataLoading("删除成功","success",function(){
-                          wx.navigateBack({
-                              delta: 1
-                          })
-                      });
+                      console.log("delete Schedule item")
                     },
                     error: function(myObject, error) {
                       // 删除失败
@@ -158,6 +224,36 @@ Page({
                 error: function(object, error) {
 
                 }
+            });
+            var userSchedule = Bmob.Object.extend("UserSchedule");
+            var queryUserSchedule = new Bmob.Query(userSchedule);
+            queryUserSchedule.equalTo("itemID", optionId);
+            
+            queryUserSchedule.find({
+              success: function (results) {
+              for (var i = 0; i < results.length; i++){
+                results[i].destroy({
+                  success: function (myObject) {
+                    console.log("delete Schedule item"+i)
+                  },
+                  error: function (myObject, error) {
+                    // 删除失败
+                    console.log(error)
+                    // common.dataLoading(error,"loading");
+                  }
+                });
+              }
+                    common.dataLoading("删除成功", "success", function () {
+                      wx.navigateBack({
+                        delta: 1
+                      })
+                    });
+                  },
+                  error: function (myObject, error) {
+                    // 删除失败
+                    console.log(error)
+                    // common.dataLoading(error,"loading");
+                  }
             });
           
         }
@@ -186,7 +282,8 @@ changeTitle:function(e){
       urls: [ that.data.listPic] // 需要预览的图片http链接列表
     })
   },
-  finishedIt: function(e){
+  //????
+  finishIt: function(e){
           wx.getStorage({
             key: 'user_id',
             success: function(res){
@@ -198,13 +295,17 @@ changeTitle:function(e){
                   if(res.get('finished')==false){
                     res.set('finished',true);
                     res.save();
+                    that.setData({
+                      finished: true
+                    })
                   }else{
                     res.set('finished',false);
                     res.save();
+                    that.setData({
+                      finished: false
+                    })
                   }
-
-                  console.log("success");
-                  console.log(optionId);
+                  
                 },
                 error: function(object,error){
                   console.log(error);
@@ -221,22 +322,15 @@ changeTitle:function(e){
           })
   },
   addToMine: function(){
-    var content = that.data.listContent;
-    var title = that.data.listTitle;
-    var address = that.data.listAddress;
-    var date = that.data.listDate;
-    var time = that.data.listTime;
-    var Iindex = that.data.listImportance;
-    var Vindex = that.data.listVariety;
     wx.getStorage({
       key: 'user_id',
       success: function (res) {
         // success
-        var Schedule = Bmob.Object.extend("Schedule");
-        var schedule = new Schedule();
         var me = new Bmob.User();
         me.id = res.data;
-        var VVindex = parseInt(Vindex);
+        var userSchedule = Bmob.Object.extend("UserSchedule");
+        var us = new userSchedule();
+        /*var VVindex = parseInt(Vindex);
         var IIindex = parseInt(Iindex);
         schedule.set("participant", me);
         if(that.data.listPic!=null){
@@ -251,18 +345,13 @@ changeTitle:function(e){
         schedule.set("variety", VVindex);
         schedule.set("finished", false);
         console.log(res.data);
-        schedule.save(null, {
+        */
+        us.set("participant", me);
+        us.set("itemID", optionId);
+        
+        us.save(null, {
           success: function (result) {
-            console.log("resultID:" + result.id);
-            var UserSchedule = Bmob.Object.extend("UserSchedule");
-            var us = new UserSchedule;
-            us.set("participant", me);
-            us.set("itemID", result.id);
-            us.save(null, {
-              success: function (res) {
-                console.log(res.id);
-              }
-            })
+            console.log(res.id);
             that.setData({
               isLoading: false,
               loading: false
@@ -340,8 +429,7 @@ changeTitle:function(e){
       listDate:e.detail.value
     })
   },
-  changeAddr: function(){
-    var that = this;
+  changeAddress: function(){
     wx.chooseLocation({
       success: function(res){
         var point = {
@@ -359,6 +447,37 @@ changeTitle:function(e){
         console.log(res);
         }
     })
+  },
+  writeAddress: function(e){
+    that.setData({
+      listAddress:e.detail.value
+    })
+  },
+  changeShareState:function(){
+    var Schedule = Bmob.Object.extend("Schedule");
+    var query = new Bmob.Query(Schedule); 
+    query.equalTo("objectId", optionId);
+    query.find({
+      success: function (result) {
+        var shareFlag = result[0].get("shareFlag");
+        console.log(shareFlag);
+        if(shareFlag){
+          shareFlag=false;
+        }
+        result[0].set('shareFlag',shareFlag);
+        result[0].save();
+        console.log(shareFlag);
+        that.setData({
+          shareState:shareFlag,
+        })
+      },
+       error: function (error) {
+        // common.dataLoading(error,"loading");
+        that.setData({
+          loading: true
+        })}
+      })
+
   },
   saveChanges: function(){
     var Schedule = Bmob.Object.extend("Schedule");

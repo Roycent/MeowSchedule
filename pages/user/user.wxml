@@ -1,0 +1,31 @@
+<!--pages/user/user.wxml-->
+<view class="main">
+<view class="MyView">
+    <image class="MyIcon" src="{{userPicSrc}}">
+    </image>
+</view>
+
+<view class="MoreInfo">
+<view style="border-top: 1px solid rgb(229, 229, 229);">
+    <navigator class="NavList1" url="about">
+            <image class="NavImage" src="../../static/images/group.png">
+            </image>
+            <text class="NavText1" >关于我们</text>   
+            <text class="NavText1" >></text>
+    </navigator>
+
+    <navigator class="NavList1" url="loading">
+            <image class="NavImage" src="../../static/images/mail.png">
+            </image>
+            <text class="NavText1" >联系我们</text>
+            <text class="NavText1" >></text>
+    </navigator>
+</view>
+    <navigator class="NavList2" url="help">
+        <image class="NavImage" src="../../static/images/remind.png">
+            </image>
+            <text class="NavText1" >使用帮助</text>
+            <text class="NavText1" >></text>
+    </navigator>
+</view>
+</view>

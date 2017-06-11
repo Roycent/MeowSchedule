@@ -28,19 +28,23 @@ Page({
           // success
           if(res.data){
             clearInterval(myInterval);
-            var Schedule = Bomb.Object.extend("Schedule");
-            var query = new Bomb.Query(Schedule);
+            var userSchedule = Bomb.Object.extend("UserSchedule");
+            var userScheduleQuery = new Bomb.Query(userSchedule);
+            var searchedSchedule = Bomb.Object.extend("Schedule");
+            var searchedScheduleQuery = new Bomb.Query(searchedSchedule);
             var isme = new Bomb.User();
             isme.id = res.data;
-            query.equalTo("participant", isme);
+            userScheduleQuery.equalTo("participant", isme);
+            searchedScheduleQuery.matchesKeyInQuery("objectId", "itemID", userScheduleQuery);
             if(that.data.limit==20){
-              query.limit(that.data.limit);
+              searchedScheduleQuery.limit(that.data.limit);
             }
             if(that.data.limit>20){
-              query.limit(2);
-              query.skip(that.data.limit-2);
+              searchedScheduleQuery.limit(2);
+              searchedScheduleQuery.skip(that.data.limit-2);
             }
-            query.find({
+            searchedScheduleQuery.ascending("plannedDate");
+            searchedScheduleQuery.find({
               success: function(results){
                 that.setData({
                   loading:true
@@ -54,14 +58,28 @@ Page({
                   var _url;
                   var pic=results[i].get("pic");
                   var address=results[i].get("address");
+                  var importance = results[i].get("importance");
+                  var picFlag = 0;
+                  var plannedDate = results[i].get("plannedDate");
+                  var plannedTime = results[i].get("time");
+                  var arr = [];
+                  arr = plannedDate.split("-");
+                  var plannedYear = arr[0];
+                  var plannedMonth = arr[1];
+                  var plannedDay = arr[2];
+                  var finished = results[i].get("finished");
                   var searching = that.data.searchKeyword;
                   if(title.search(searching)!=-1 || content.search(searching)!=-1)
                   {
+                  for (; content.indexOf('\n') != -1;)
+                      content = content.replace('\n', " ");
                   if(pic){
-                    jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","attachment":"'+pic._url+'","address":"'+address+'"}'
+                    picFlag=1;
+                    jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","attachment":"' + pic._url + '","address":"' + address + '","importance":"' + importance + '","picFlag":"' + picFlag + '","plannedYear":"' + plannedYear + '","plannedMonth":"' + plannedMonth + '","plannedDay":"' + plannedDay + '","plannedTime":"' + plannedTime + '","finished":"' + finished + '"}'
                     }
                      else{
-                       jsonA='{"title":"'+title+'","content":"'+content+'","id":"'+id+'","created_at":"'+created_at+'","address":"'+address+'"}'
+                       picFlag=0;
+                    jsonA = '{"title":"' + title + '","content":"' + content + '","id":"' + id + '","created_at":"' + created_at + '","address":"' + address + '","importance":"' + importance + '","picFlag":"' + picFlag + '","plannedYear":"' + plannedYear + '","plannedMonth":"' + plannedMonth + '","plannedDay":"' + plannedDay + '","plannedTime":"' + plannedTime + '","finished":"' + finished + '"}'
                        }
                   var jsonB=JSON.parse(jsonA);
                   itlist.push(jsonB)
@@ -124,4 +142,14 @@ Page({
     console.log("refresh");
     that.onLoad();
   },
+  setSearchKeyword:function(e){
+    that.setData({
+      searchKeyword:e.detail.value
+    })
+  },
+  toSearch:function(){
+    wx.navigateTo({
+      url: '../search/search?searchKeyword='+that.data.searchKeyword,
+    })
+  }
 })

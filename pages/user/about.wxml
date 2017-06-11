@@ -1,0 +1,54 @@
+<view class="main">
+<view class="MyView">
+    <image class="MyIcon" src="http://wx.qlogo.cn/mmopen/vi_32/jaz3ZuMGJl7S2Z4iavu4C9gXVRSZsfjRL3tlPRuwicopxJMhMM0A84QW6eUZQKHiboFZO7LK252P6uib9fqggxmiaVA/0">
+    </image>
+    <view class="infoRight">
+    <view class="name"><text>XZH</text></view>
+    <view class="description"><text>能够满足各种需求的全能dalao</text> </view>
+    </view>
+</view>
+<view class="MyViewRight">
+    <view class="info">
+    <view class="nameRight"><text>LXH</text></view>
+    <view class="descriptionRight"><text>直到最后也没有去买菜刀的温柔美工小姐姐</text> </view>
+    </view>
+    <image class="MyIcon" src="http://wx.qlogo.cn/mmopen/vi_32/fMAsj9XANjhTKLFibdZqUhMLrsmsfNNh5NY9Iic8zZKvx0H3Oa4eeOwNMQdmvOPD8Pd5Mq1Ig3Y0CylOmr2aBWVA/0">
+    </image>
+</view>
+<view class="MyView">
+    <image class="MyIcon" src="http://wx.qlogo.cn/mmopen/vi_32/UF0zY7Zz258DYZXQuDqibMgoj6o9la9z2zzoF0CNYAEFvImt3afrSTP1GI6GLyeu2EjcHSZcvN5OfJ4e2p0vtHA/0">
+    </image>
+    <view class="infoRight">
+    <view class="name"><text>WYY</text></view>
+    <view class="description"><text>会各种测试的程序猿鼓励师</text> </view>
+    </view>
+</view>
+
+<view class="MyViewRight">
+    <view class="info">
+    <view class="nameRight"><text>XH</text></view>
+    <view class="descriptionRight"><text>号称每行代码5块钱但每天找一万个理由拒绝挣钱的前端</text> </view>
+    </view>
+    <image class="MyIcon" src="http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI7hsTibhnpQP9nu2B0rZicZbxoC0CIT7v9uicPueQw65zxTkdDWb3Vic6cXlQQyHtbNn9W6IMcibG1BoA/0">
+    </image>
+</view>
+
+<view class="MyView">
+    <image class="MyIcon" src="http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK9KF8GGeAEbibBdOTEhmTxgx5UBlrptFicbRmDcJaaYdtkOUJ6GQntiavicjxhQcY6C4D6DC6icWNvb2g/0">
+    </image>
+    <view class="infoRight">
+    <view class="name"><text>XYY</text></view>
+    <view class="description"><text>瑶神</text> </view>
+    </view>
+</view>
+
+<view class="MyViewRight">
+    <view class="info">
+    <view class="nameRight"><text>ZMM</text></view>
+    <view class="descriptionRight"><text>什么都不会只知道改需求的辣鸡项目经理（？）</text> </view>
+    </view>
+    <image class="MyIcon" src="http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKRTRKY71IuU5WAiaOa6uDN7hkbWBvo1OCV8GImYQcE464rBFs9UaGy3zUYw4Iuvn3BxzfGWt6dJWw/0">
+    </image>
+</view>
+
+</view>

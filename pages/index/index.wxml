@@ -1,30 +1,53 @@
 <!--index.wxml-->
+<view class="background">
+
 
 <view class="searchBox">
   
-    <input class=" searchText" placeholder="输入搜索内容" bindinput="setSearchKeyword" bindconfirm="toSearch" confirm-type="search" />
+   <image class="searchPic" src="../../static/images/search.png"/>
+    <input class="searchInput" placeholder="输入搜索内容" bindconfirm="toSearch" confirm-type="search" bindinput="setSearchKeyword"/>
   
 </view>
-<view >
-  <text class="searchText">你一共有{{countIt}}个日程,一共完成了{{countFIt}}个日程</text>
+<view class="mylist_footer" wx:if="{{countIt==0}}">
+        <navigator url="../write/write">
+              <image src="../../static/images/addbutton.png" class="add0 mylist_footer">
+                    </image>
+        </navigator>
+
+</view>
+<view class="tip" wx:if="{{countIt==0}}">
+  <image src="../../static/images/indeximg.png"></image>
+</view>
+<view class="searchText" wx:if="{{countIt!=0}}">
+  <text>你一共有</text>
+  <text style="color:#353535;font-weight:500;">{{countIt}}</text>
+   <text>个日程,还有</text>
+   <text style="color:#FDD106;font-weight:500;">{{countIt-countFIt}}</text>
+   <text>个未完成</text>
+</view>
+<view class="mylist_footer" wx:if="{{countIt!=0}}">
+        <navigator url="../write/write">
+              <image src="../../static/images/addbutton.png" class="addStyle mylist_footer">
+                    </image>
+        </navigator>
+
 </view>
 
 <import src="../template/list.wxml" />
+
 <scroll-view lower-threshold="800" bindscrolltolower="pullUpLoad" bindscrolltoupper="pullDownRefresh" scroll-y="true" style="height: {{windowHeight}}px; width: {{windowWidth}}px; ">
 <!--<view class="index_list">-->
 <view class="MainView">
   <navigator url="../listDetail/listDetail?itemId={{item.id}}" hover-class="navigator-hover" wx:for-items="{{itemList}}" wx:key="itemListId" >
-    <template is="listTemp" data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address,listTime:item.created_at,listImportance:item.importance}}" />    
+    <template is="list"  data="{{listPic:item.attachment,listTitle:item.title,listContent:item.content,listAddress:item.address,listTime:item.created_at,listImportance:item.importance,listPicFlag:item.picFlag,listPlannedYear:item.plannedYear,listPlannedMonth:item.plannedMonth,listPlannedDay:item.plannedDay,listPlannedTime:item.plannedTime,listFinished:item.finished}}" /> 
+   
      
   </navigator>
-  </view>
-<view class="mylist_footer">
-      <view class="mylist_footer_left">
-        <navigator url="../write/write">
-         toWrite
-        </navigator>
-      </view>
 </view>
+
+
+  
+
 </scroll-view>
 
-
+</view>

@@ -3,41 +3,53 @@
 .TitleStyle/*输入标题样式*/
 {
     height: 100rpx;
-    font-size: 20pt;
+    font-size: 15pt;
     border-bottom: 2rpx solid silver;
     font-weight: 500;
 }
 .TitleFont/*输入标题文字样式*/
 {
-    color: #b2b2b2;
+    color: rgb(110, 110, 110); 
     font-weight: 500;
 }
 .AddButton/*添加日程按钮样式*/
 {
-    margin-left: 20%;
-    margin-right: 20%;
-    background-color:black;
-    color: white;
-    margin-top: 20rpx;
-}
+     margin-top: 20px;
+    text-align: center; 
+    background-color: #FACA16; 
+    color:white; 
+    border-radius: 20px;  
+    font-size: 16px;
+    font-weight:600;
+    width:50%;  
+  }
 .AddLocation
 {
     font-size: 30rpx;
-    color: #b2b2b2;
+   color: rgb(110, 110, 110); 
+
 }
 .Out/*最外层边框*/
 {
-    border:4rpx solid crimson;
-    margin: 20rpx;
-    padding: 10rpx;
-    border-radius: 20rpx;
-    padding-bottom: 20rpx;
+    border-radius: 6px; 
+    background-color: rgb(255, 255, 255); 
+    box-shadow: rgba(0, 0, 0, 0.239216) 0px 5px 5px 0px; 
+    margin-bottom: 37.5rpx; 
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+    padding-bottom: 30rpx;
+    padding-top: 10rpx;
+    border: 0.3px solid #b2b2b2;
 }
 .AddPicture/*添加照片按钮样式*/
 {
   height: 140rpx;
   width: 140rpx;
-  border-radius: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
 }
 .ButtonClick
 {
@@ -51,34 +63,47 @@
 }
 .LocationButton
 {
-  border: 0;
-  outline-color: #f2f3f4;
-  background-color: #f2f3f4;
-  border-color: 1rpx solid #f2f3f4;
-  border-radius: 25rpx;
+  border: 0ch;
+  outline-color: white;
+  background-color: white;
+  border-color: 0px solid white;
   font-size: 24rpx;
   margin-left: 70%;
-  margin-top: 0;
   color:#b2b2b2;
 
 }
 .Text/*内容样式*/
 {
   background:#f8f8ff;
-  border-radius: 30rpx;
+  border-radius: 5rpx;
+  width: 100%;
   margin-top: 10rpx;
   padding-top: 10rpx;
   padding-bottom: 10rpx;
+  font-size: 12pt;
+  color: #b2b2b2;
 }
 .OptionText
 {
   float: left;
   width: 25%;
+  font-size: 12pt;
+  color: rgb(110, 110, 110); 
+  font-weight: 580; 
 }
 .Option
 {
   line-height: 80rpx;
-  font-size: 34rpx;
+  font-size: 12pt;
   height: 80rpx;
   border-bottom: 2rpx solid #b2b2b2;
+}
+.pickerStyle
+{
+  font-size: 12pt;
+  color: rgb(110, 110, 110); 
+}
+page
+{
+  background-color: #EFEFF4;
 }

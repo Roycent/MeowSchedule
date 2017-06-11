@@ -1,16 +1,46 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/write/write",
     "pages/listDetail/listDetail",
     "pages/search/search",
-    "pages/seeMore/seeMore"
+    "pages/seeMore/seeMore",
+    "pages/user/user",
+    "pages/user/loading",
+    "pages/user/about",
+    "pages/user/help"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "MeowSchedule",
+    "navigationBarTextStyle": "#FFFFFF",
     "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#FAFAFA",
+    "borderStyle": "white",
+    "color": "#b2b2b2",
+    "selectedColor": "#1e1e1e",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "selectedIconPath": "static/images/table1.png",
+        "iconPath": "static/images/table.png",
+        "text": "日程"
+      },
+      {
+        "pagePath": "pages/seeMore/seeMore",
+        "selectedIconPath": "static/images/set1.png",
+        "iconPath": "static/images/set.png",
+        "text": "归档整理"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "selectedIconPath": "static/images/mine1.png",
+        "iconPath": "static/images/mine.png",
+        "text": "我"
+      }
+    ]
   }
 }

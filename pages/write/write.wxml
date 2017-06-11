@@ -1,14 +1,16 @@
 <loading hidden="{{loading}}">
   页面初始化中...
 </loading>
+<view class="background">
+
 <view class="Out">
     <input class="TitleStyle" placeholder="标题" bindinput="setTitle" placeholder-class="TitleFont"  />
 
-    <view class="Text">
-            <textarea  placeholder="添加内容" maxlength="1000"  value="" bindblur="setContent"/>
+    <view>
+       <textarea class="Text"  placeholder="添加内容" maxlength="1000"  value="" bindblur="setContent"/>
     </view>
     <view class="AddPicture" class="add_pic" bindtap="uploadPic" wx-if="{{!isSrc}}">
-        <image src="../../pages/Resource/AddPicture.png" class="AddPicture"></image>
+        <image src="../../Resource/AddPicture.png" class="AddPicture"></image>
     </view>
     <view wx:if="{{isSrc}}" class="image_box">
         <view  class="picPre">
@@ -19,16 +21,23 @@
     
     
 <view >
-<image src="../../pages/Resource/Location.png" class="Location"></image>
-<input  placeholder="位置{{address}}" class="AddLocation"/>
+<image src="../../Resource/Location.png" class="Location"></image>
+<input  placeholder="{{address}}" class="AddLocation" bindinput="writeAddress"/>
 </view>
  
 <button bindtap="getAddr" class="LocationButton">获取当前位置</button>
 
     
+<view class="Option">
+<text class="OptionText">日期</text>
+<picker mode="date" class="pickerStyle" value="{{date}}" start="1995-01-01" end="2055-12-31" bindchange="setDate">
+    <text>{{date}}</text>
+</picker>
+</view>
+
     <view class="Option">
     <text class="OptionText">时间    </text>
-      <picker mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="listenerTimePickerSelected">
+   <picker mode="time"  class="pickerStyle" value="{{time}}" start="00:00" end="24:00" bindchange="listenerTimePickerSelected">
     <text>{{time}}</text>
 </picker>
     </view>
@@ -36,7 +45,7 @@
 
 <view class="Option">
 <text class="OptionText">重要程度</text>
-<picker mode="selector" range="{{importanceArray}}" value="{{Iindex}}" bindchange="listenerImportancePickerSelected">
+<picker mode="selector" class="pickerStyle" range="{{importanceArray}}" value="{{Iindex}}" bindchange="listenerImportancePickerSelected">
     <text>{{importanceArray[Iindex]}}</text>
 </picker>
 </view>
@@ -44,18 +53,15 @@
 
 <view class="Option">
 <text class="OptionText">分类    </text>
-<picker mode="selector" range="{{varietyArray}}" value="{{Vindex}}" bindchange="listenerVarietyPickerSelected">
+<picker mode="selector" class="pickerStyle" range="{{varietyArray}}" value="{{Vindex}}" bindchange="listenerVarietyPickerSelected">
     <text>{{varietyArray[Vindex]}}</text>
 </picker>
 </view>
 
 
-<view class="Option">
-<text class="OptionText">日期</text>
-<picker mode="date" value="{{date}}" start="1995-01-01" end="2055-12-31" bindchange="setDate">
-    <text>{{date}}</text>
-</picker>
-</view>
+
 
 </view>
 <button class="AddButton" hover-class="ButtonClick" bindtap="sendNewItem" data-content="{{content}}" loading="{{isLoading}}" data-title="{{title}}" data-address="{{address}}" data-date="{{date}}" data-Iindex="{{Iindex}}" data-Vindex="{{Vindex}}" data-time="{{time}}" hover-start-time="200" disabled="{{isdisabled}}">增加日程</button>
+
+</view>

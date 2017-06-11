@@ -17,16 +17,16 @@
 }
 
 .usermotto {
-  margin-top: 200px;
+  margin-top: 400rpx;
 }
 
 .item .remove{  
-    width: 60px;  
+    width: 120rpx;  
     height: 100%;  
     background-color: red;  
     position: absolute;  
     top: 0;  
-    right: -60px;  
+    right: -120rpx;  
     display: flex;  
     justify-content: center;  
     align-items: center;  
@@ -35,11 +35,14 @@
 
     
 .MainView{
-    border-radius: 6px; 
-    background-color: rgb(255, 255, 255); 
-    box-shadow: rgba(0, 0, 0, 0.239216) 0px 2px 5px 0px; 
+    border-radius: 12rpx; 
+    background-color: rgba(255, 255, 255,0.85); 
+    box-shadow: rgba(0, 0, 0, 0.239216) 0rpx 4rpx 10rpx 0rpx; 
     margin-bottom: 37.5rpx; 
-    padding-top:5%;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+
+
 }
 
 .MainViewImage {
@@ -49,24 +52,26 @@
   
 }
 .MainlistView{
+  background-color: rgba(255, 255, 255); 
   width: 90%;
   padding-left: 5%; 
   padding-top: 2%; 
   padding-right: 5%;
 }
 .MainlistTitle {
-  margin-bottom: 3px; 
+  margin-bottom: 6rpx; 
   
 }
 
 .MainlistContent {
-  font-size: 14px; 
+  font-size: 28rpx; 
   color: rgb(110, 110, 110); 
   text-align: justify; 
   line-height: 1.7em; 
   padding-left: 5%;
   padding-top:1%;
   padding-right: 5%;
+  background-color: rgba(255, 255, 255,0);
 }
 
 .list_header  .list_header_right {
@@ -85,40 +90,67 @@
 .list_header {
   padding-bottom: 10rpx;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 24rpx;
   color: #666;
 }
 
 .MainViewtext{
-  font-size: 14px; 
+  font-size: 28rpx; 
   color: rgb(110, 110, 110); 
   text-align: justify; 
   line-height: 1.7em; 
 }
-
-.searchBox{
-   width:94%;
-   display: block; 
-   border-bottom: 1px solid rgb(229, 229, 229); 
-   border-bottom-style: solid; 
-   padding-left: 3%;
-   padding-right: 3%;
-   padding-top:0rpx;
+.searchPic
+{
+  height: 49rpx;
+  width: 49rpx;
+  float: left;
 }
-
+.searchInput
+{
+  height: 53rpx;
+}
+.searchBox{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+  border-radius: 30rpx;
+  border: 2rpx solid rgb(153, 153, 153);
+  display: block;  
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top:0rpx;
+  height: 53rpx;
+}
+.searchBox2{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+  border-radius: 30rpx;
+  border: 2rpx solid rgb(153, 153, 153);
+  display: block;  
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top:0rpx;
+  height: 53rpx;
+}
 .searchText{
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
   color: rgb(153, 153, 153); 
-  font-size: 13px; 
-  
-  border-bottom: 1px solid rgb(229, 229, 229); 
+  font-size: 30rpx; 
+  line-height: 55rpx;
+  border-bottom: 2rpx solid rgb(229, 229, 229); 
   border-bottom-style: none;
+  margin-left: 30rpx;
 }
 
 .floatNavigator{
 
-  padding: 10px 0 0;
+  padding: 20rpx 0 0;
   position: fixed;
-  width: 300px;
+  width: 600rpx;
   
 }
 
@@ -126,13 +158,18 @@
   color: #999;
   line-height: 64rpx;
   overflow: hidden;
-  margin-top: 5px;
+  margin-top: 10rpx;
 }
 
 .mylist_footer .mylist_footer_left {
   float: right;
   position: fixed;
   bottom: 0rpx;
+}
+.tip
+{
+  margin-left: 90rpx;
+
 }
 .FinishOpt
 {
@@ -149,7 +186,7 @@
 }
 .iconfont {
   font-family:"iconfont" !important;
-  font-size:20px;
+  font-size:40rpx;
   font-style:normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -160,3 +197,165 @@
 .icon-blue:before { color:blue; content: "\e7ff"; }
 .icon-green:before { color:green; content: "\e7ff"; }
 .icon-black:before { color:black; content: "\e7ff"; }
+
+
+.page-section-spacing{
+  box-sizing: border-box;
+  padding: 0 10rpx;
+}
+.flex-wrp{
+  display:flex;
+  border-bottom: 2rpx solid #EFEFF4;
+ justify-content: space-between;
+ overflow: hidden
+}
+.flex-item{
+  height: 160rpx;
+  font-size: 26rpx;
+}
+
+
+.demo-pic{
+  /*position: relative;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  background-color: #FFFFFF;
+  width: 30rpx;
+  padding-left: 0rpx;
+}
+.demo-text-1{
+  /*position: relative;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  background-color: #FFFFFF;
+  width: 110rpx;
+  padding-left: 0rpx;
+}
+
+.demo-text-2{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  font-size: 36rpx;
+  width: 430rpx;
+}
+
+.demo-text-3{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  color: #353535;
+  font-size: 36rpx;
+  width: 180rpx;
+}
+
+.demo-text-4{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  color: #353535;
+  font-size: 36rpx;
+  width: 580rpx;
+}
+
+.picture
+{
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 6rpx;
+  margin-top: 5rpx;
+  margin-left: 5rpx;
+}
+.year
+{
+  line-height: 24rpx;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #353535;
+}
+.date1
+{
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+  line-height: 64rpx;
+  font-size:64rpx;
+  font-weight: 600;
+  color: #CCCCCC;
+}
+.date2
+{
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+  line-height: 64rpx;
+  font-size: 64rpx;
+  font-weight: 600;
+  color: #FDD106;
+}
+.time
+{
+  line-height: 30rpx;
+  font-size: 30rpx;
+  color:#555555;
+  font-weight: 400;
+  padding-left: 2rpx;
+}
+.title 
+{
+  margin-top: 15rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #353535;
+}
+.content  
+{
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #888888;
+}
+page 
+{
+  background-color: #EFEFF4;
+  background-attachment:initial;
+  min-height: 100%;
+}
+.addStyle{
+height: 60rpx;
+width: 60rpx;
+overflow: hidden;
+margin-left: 85%;
+position: fixed;
+top: 62rpx;
+border-radius: 10rpx;
+z-index: 999;
+box-shadow: rgba(0, 0, 0, 0.239216) 0rpx 4rpx 4rpx 0rpx;
+}
+.add0
+{
+height: 60rpx;
+width: 60rpx;
+overflow: hidden;
+margin-left: 85%;
+position:absolute;
+top: 62rpx;
+border-radius: 10rpx;
+z-index: 999;
+box-shadow: rgba(0, 0, 0, 0.239216) 0rpx 4rpx 4rpx 0rpx;
+}
+.importancePic
+{
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 0rpx;
+  margin-top: 65rpx;
+}

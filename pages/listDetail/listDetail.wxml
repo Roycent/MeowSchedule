@@ -4,92 +4,184 @@
   页面加载中...
 </loading>
 <view hidden="{{!loading}}">
-<view class="Out">
 
+<view class="cancelShare" wx:if="{{!isMine&&!shareState}}">
+  <text>对方已经取消了该日程的分享</text>
+</view>
+<view class="DetailMainView" hidden="{{!isMine&&!shareState}}">
 
- <!--这个是图片--> 
+<view class="NavList1" hidden="{{!isMine}}">
 
- 
-<view class="PicStyle">
-    <image  mode="aspectFill" src="{{listPic}}" class="AddPicture" wx:if="{{listPic}}"></image>
+<image class="NavImage" src="../../static/images/editor.png" bindtap="wannaChange"></image> 
 </view>
 
+<view class="NavList2" hidden="{{!isMine}}">
+<image class="NavImage" src="../../static/images/empty.png"
+bindtap="deleteThis"></image>
+</view>
+
+
+<view class="TopView" wx:if="{{listPic!=null}}">
+    <image  mode="aspectFill" src="{{listPic}}" class="listPic" wx:if="{{listPic}}">
+    </image>
+</view>
+
+
+<!---change-->
 
 <view hidden="{{!wannaChange}}">
-  <view>标题</view>
-  <input class="TitleStyle" value="{{listTitle}}" bindinput="changeTitle"/>
-  <view>内容</view>
-  <view ><textarea class="Text" value="{{listContent}}" bindinput="changeContent" /></view>
 
-  <view class="Option">
-  <text class="OptionText">日期</text>
-  <picker mode="date" value="{{listDate}}" start="1995-01-01" end="2055-12-31" bindchange="changeDate">
-    <text>{{listDate}}</text>
-  </picker>
+<view class="Out">
+     <view class="MainViewCategory">标题</view>
+ <input class="MainViewtext" value="{{listTitle}}" bindinput="changeTitle"/>
+  <view class="MainViewCategory">内容</view>
+  <view>
+  <textarea class="TextEditStyle" value="{{listContent}}" bindinput="changeContent" />
   </view>
 
   <view class="Option">
-  <text class="OptionText">时间：</text>
-  <picker mode="time" value="{{listTime}}" start="00:00" end="23:59" bindchange="changeTime">
-  <text>{{listTime}}</text></picker>
+   <text class="OptionText">地址</text>
+   <input class="AddLocation" placeholder="{{listAddress}}"  bindlongtap="changeAddress" bindinput="writeAddress"/>
   </view>
 
   <view class="Option">
-  <view><image src="../../pages/Resource/Location.png" class="Location"></image>
-  <view class="AddLocation" bindtap="changeAddr">地址：{{listAddress}}</view>
-  </view>
-  </view>
-
-  <view class="Option">
-  <text class="OptionText">重要程度：</text>
-  <picker  mode="selector" range="{{importanceArray}}" value="{{listImportance}}" bindchange="changeImportance">
-    <text class="OptionText">{{importanceArray[listImportance]}}</text>
-  </picker>
-  </view>
-
-  <view class="Option">
-  <text class="OptionText">分类：</text>
-  <picker mode="selector" range="{{varietyArray}}" value="{{listVariety}}" bindchange="changeVariety">
-      <text class="OptionText">{{varietyArray[listVariety]}}</text>
-  </picker>
-  </view>
-    <button bindtap="saveChanges" class="AddButton">保存修改</button>
+   <text class="OptionText">日期</text>
+    <picker mode="date" class="pickerStyle" value="{{listDate}}" start="1995-01-01" end="2055-12-31" bindchange="changeDate">
+      <text class="MainViewtext">{{listDate}}</text>
+</picker>
 </view>
 
+<view class="Option">
+<text class="OptionText">时间</text>
+  <picker mode="time" value="{{listTime}}" start="00:00" end="23:59" bindchange="changeTime">
+  <text class="MainViewtext">{{listTime}}</text></picker>
+  </view>
+
+
+<view class="Option">
+<text class="OptionText">分类</text>
+  <picker mode="selector" range="{{varietyArray}}"  value="{{listVariety}}" bindchange="changeVariety">
+  <text class="MainViewtext">{{varietyArray[listVariety]}}</text></picker>
+  </view>
+<view class="Option">
+<text class="OptionText">重要程度</text>
+  <picker  mode="selector"  range="{{importanceArray}}" value="{{listImportance}}" bindchange="changeImportance">
+    <text class="MainViewtext">{{importanceArray[listImportance]}}</text>
+  </picker>
+  </view>
+
+
+
+  
+  
+</view>
+ 
+  <button bindtap="saveChanges" class="ChangeEnsure">保存修改</button>
+</view>
+
+
+<!--basic-->
 
 
 <view hidden="{{wannaChange}}">
+<view style="height:20rpx;" wx:if="{{listPic==null}}"></view>
 
+<view class="page-section-spacing">
   <!--这个是标题-->
-  <view class="TitleStyle">
-  <switch class="FinishOpt" type="checkbox" checked="{{finished}}" bindchange="finishedIt" /><text>{{listTitle}}</text></view>
-  <!--这个是内容-->
-  <view class="Text"><text>{{listContent}}</text></view>
+  <view class="flex-wrp">
+    <!--完成状态-->
+    <view class="detailInfo">
+      <view class="BasicInfoText1">完成状态</view>
+      <image hidden="{{finished}}" class="StatusImage" src="../../static/images/wrong.png" ></image> 
+      <image hidden="{{!finished}}" class="StatusImage" src="../../static/images/right.png" ></image> 
+    </view>
+    <!--分类-->
+    <view  class="detailInfo">
+      <view class="BasicInfoText1">日程类别</view>
+      <view class="BasicInfoText2">  {{varietyArray[listVariety]}}</view>
 
-  <view class="Option"><text>时间: {{listDate}}  {{listTime}}</text></view>
+    </view>
+    <!--重要程度-->
+    <view  class="detailInfo">
+      <view class="BasicInfoText1">重要程度</view>
+      <view  class="BasicInfoText2">{{importanceArray[listImportance]}}</view>
 
-  <view class="Option">
-    <image src="../../pages/Resource/Location.png" class="Location"></image>
-    <text class="AddLocation">位置：{{listAddress}}</text>
+    </view>
   </view>
-  <view class="Option"><text>重要程度：{{importanceArray[listImportance]}}</text></view>
-  <view class="Option"><text>分类: {{varietyArray[listVariety]}}</text></view>
-  
-  
- 
-  <view class="ButtonPanel">
-  
-    <text bindtap="wannaChange" class="Operate">编辑</text>
-    <text bindtap="deleteThis" class="Operate">删除</text>
-  
-  </view>
-  
 
-  <view hidden="{{isMine}}">
-  <button bindtap="addToMine" class="AddButton">添加到我的日程</button>
+
+  <view class="listItem">
+  <view class="DetailTitle">
+    <text>{{listTitle}}</text>
   </view>
+  <view class="MainlistContent">
+    <text>{{listContent}}</text>
+  </view>
+
+  <view class="userItem">
+
+<view class="userPicture"  wx:for="{{itemList}}">
+    <image style="border:1px solid #cccccc;height:50rpx;width:50rpx;border-radius:50rpx;" src="{{item.userPic}}"></image>
 </view>
 
 
+
+
+
+<view  class="userCount">{{itemList.length}}人参与了该日程</view>
+  </view>
+
+  <view class="Time">
+  <image class="AddressImage" src="../../static/images/time.png">
+            </image>
+    <text class="BasicInfoText2">  {{listDate}}  {{listTime}}</text>
+  </view>
+  <view class="Address">
+  <image class="AddressImage" src="../../static/images/address.png">
+            </image>
+    <text class="BasicInfoText2">{{listAddress}}</text>
+  </view>
+
+
 </view>
 </view>
+
+  </view>
+
+  <button  wx:if="{{finished==false&&shareState==false&&isMine==true&&wannaChange==false}}" checked="finished"  bindtap="finishIt" class="ChangeEnsure">完成日程</button>
+    <button  wx:if="{{finished==true&&shareState==false&&isMine==true&&wannaChange==false}}"  checked="finished"  bindtap="finishIt" class="ChangeEnsure">未完成</button>
+  </view>
+
+
+  <view wx:if="{{shareState==true&&isMine==false&&shareState==true}}">
+    <button bindtap="addToMine" class="ChangeEnsure">添加到我的日程</button>
+  </view>
+
+
+<view class="buttonStyle" wx:if="{{isMine==true&&shareState==true}}" >
+
+
+        <view class="buttonFlex" style="flex-direction:row;">
+         
+
+        <view class="button1">
+             <button  wx:if="{{isMine==true&&shareState==true&&finished==false&&wannaChange==false}}"checked="finished"  bindtap="finishIt" class="ChangeEnsure1">完成日程</button>
+    <button wx:if="{{isMine==true&&shareState==true&&finished==true&&wannaChange==false}}" checked="finished"  bindtap="finishIt" class="ChangeEnsure1" >未完成</button>
+        </view>
+        <view class="button1"  >
+            <button bindtap="changeShareState" wx:if="{{isMine==true&&shareState==true&&wannaChange==false}}" class="ChangeEnsure2">取消分享</button>
+        </view>
+          
+
+        </view>
+
+
+</view>
+</view>
+
+
+
+
+
+
+

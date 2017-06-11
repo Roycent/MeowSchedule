@@ -3,7 +3,7 @@
 <template name="listTemp">
 
  <view  class="MainView">   
-    <image  mode="aspectFill" src="{{listPic}}" class="MainViewImage" wx:if="{{listPic}}" bindtap="seeBig"></image>
+    <image  mode="aspectFill" src="{{listPic}}" class="MainViewImage" wx:if="{{listPic}}"></image>
     
          <view class="MainlistView" wx-if="{{listTitle!=''}}">{{listTitle}}</view>
         <view class="MainlistContent">
@@ -23,4 +23,72 @@
     
 </view>
 </template>
+
+
+
+
+<template name="list">
+<view class="page-section-spacing" >
+
+
+        <view class="flex-wrp" style="flex-direction:row;">
+          <view class="flex-item demo-pic">
+          <image class="importancePic" wx:if="{{listImportance==0}}" src="../../static/images/importance0.png"/>
+          <image class="importancePic" wx:if="{{listImportance==1}}" src="../../static/images/importance11.png"/>
+          <image class="importancePic" wx:if="{{listImportance==2}}" src="../../static/images/importance12.png"/>
+          <image class="importancePic" wx:if="{{listImportance==3}}" src="../../static/images/importance13.png"/>
+          <image class="importancePic" wx:if="{{listImportance==4}}" src="../../static/images/importance14.png"/>
+          </view>
+
+
+
+          <view class="flex-item demo-text-1">
+              <view class="year">{{listPlannedYear}}-{{listPlannedMonth}}</view>
+              <view class="date1" wx:if="{{listFinished =='true'}}">{{listPlannedDay}}</view>
+              <view class="date2" wx:if="{{listFinished =='false'}}">{{listPlannedDay}}</view>
+              <view class="time">{{listPlannedTime}}</view>
+          </view>
+          <view class="flex-item demo-text-2" wx:if="{{listPicFlag==1}}" >
+              <view class="title">{{listTitle}}</view>
+              <view class="content">{{listContent}}</view>
+          </view>
+          <view class="flex-item demo-text-3" wx:if="{{listPicFlag==1}}">
+                <image  mode="aspectFill" src="{{listPic}}" class="picture" wx:if="{{listPic}}"></image>
+          </view>
+
+           <view class="flex-item demo-text-4" wx:if="{{listPicFlag==0}}" >
+              <view class="title">{{listTitle}}</view>
+              <view class="content">{{listContent}}</view>
+          </view>
+
+
+        </view>
+
+
+</view>
+</template>
+
+
+
+
+
+<template name="timeList">
+<view>
+    <view class="item">
+    <view class="dateInfo">{{listDate}}</view>
+    <!--<checkbox value="value" checked="{{finished}}" />-->
+    <view class="iconPannel">
+    <image  class="iconStyle" src="{{listFinished =='true'? '../../Resource/blue1.png':'../../Resource/blue.png'}}"     wx:if="{{listVariety==0}}"></image>
+    <image  class="iconStyle" src="{{listFinished =='true'? '../../Resource/yellow1.png':'../../Resource/yellow.png'}}" wx:if="{{listVariety==1}}"></image>
+    <image  class="iconStyle" src="{{listFinished =='true'? '../../Resource/red1.png':'../../Resource/red.png'}}"       wx:if="{{listVariety==2}}"></image>
+    <image  class="iconStyle" src="{{listFinished =='true'? '../../Resource/green1.png':'../../Resource/green.png'}}"   wx:if="{{listVariety==3}}"></image>
+    <image  class="iconStyle" src="{{listFinished =='true'? '../../Resource/purple1.png':'../../Resource/purple.png'}}" wx:if="{{listVariety==4}}"></image>
+    </view>
+
+    <view class="titleInfo">{{listTitle}}</view>
+    </view>
+</view>
+    
+</template>
+
 
